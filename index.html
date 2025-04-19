@@ -213,6 +213,22 @@
             background-color: #DC2626;
         }
 
+        /* Submit Button Specific Styling */
+        .submit-text {
+            display: inline-block;
+            text-align: center;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
+        button#submit-test {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 15px;
+            white-space: normal;
+        }
+
         /* Vietnamese text */
         .vietnamese {
             font-family: 'Roboto', sans-serif;
@@ -359,9 +375,7 @@
         }
 
         .error-message::before {
-            content: '\f071';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+            content: none; /* Xóa biểu tượng tam giác màu cam */
         }
 
         /* Footer */
@@ -430,6 +444,15 @@
                 font-size: 0.85em;
                 min-height: 36px;
                 max-width: 180px;
+            }
+
+            .submit-text {
+                font-size: 0.8em;
+            }
+
+            button#submit-test {
+                padding: 6px 12px;
+                line-height: 1.3;
             }
 
             .result-table th, .result-table td {
@@ -1126,7 +1149,11 @@
         </div>
     </div>
 
-    <button id="submit-test" type="button" style="display: none;"><i class="fas fa-paper-plane"></i> テストを提出する (Nộp bài)</button>
+    <button id="submit-test" type="button" style="display: none;">
+        <span class="submit-text">
+            テストを提出する<br>( Nộp bài )
+        </span>
+    </button>
     <div id="message" class="error-message"></div>
 
     <!-- Result Section -->
