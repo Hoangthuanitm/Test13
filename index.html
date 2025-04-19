@@ -3,200 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>模擬テスト 第1～3課</title>
-    <!-- Google Fonts -->
+    <title>模擬テスト　第1～3課</title>
+    <!-- Thêm Google Fonts cho tiếng Nhật và tiếng Việt -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- XLSX library -->
+    <!-- Thêm thư viện xlsx để xuất Excel -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-            background-color: #f0f4f8;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
+            padding: 20px;
+            background-color: #F5F7FA;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
         }
-
-        /* Navigation Bar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background-color: #4A90E2;
-            padding: 10px 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            transition: background-color 0.3s;
-            white-space: nowrap;
-        }
-
-        .navbar a:hover {
-            background-color: #357ABD;
-        }
-
-        .navbar .progress-bar {
-            background-color: #fff;
-            height: 8px;
-            border-radius: 4px;
-            width: 100px;
-            overflow: hidden;
-        }
-
-        .navbar .progress {
-            height: 100%;
-            background-color: #28A745;
-            width: 0;
-            transition: width 0.3s;
-        }
-
-        /* Header */
         .header {
             text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-
         .header h1 {
             font-size: 1.8em;
+            margin: 0;
             color: #4A90E2;
-            margin-bottom: 10px;
         }
-
         .header h2 {
-            font-size: 1.3em;
+            font-size: 1.4em;
+            margin: 10px 0;
             color: #333;
         }
-
-        .header p {
-            font-size: 1em;
-            color: #6B7280;
-        }
-
-        /* Student Info */
         .student-info {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            justify-content: space-between;
             margin-bottom: 20px;
+            border: 1px solid #E0E4EA;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #FFFFFF;
         }
-
         .student-info div {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
+            flex: 1;
+            margin: 0 10px;
         }
-
         .student-info label {
             font-weight: 500;
             color: #4A90E2;
-            margin-bottom: 5px;
-            white-space: nowrap;
         }
-
         .student-info input {
+            width: 90%;
             padding: 8px;
             border: 1px solid #D1D5DB;
-            border-radius: 4px;
-            font-size: 0.95em;
+            border-radius: 6px;
+            font-family: 'Roboto', sans-serif;
             transition: border-color 0.2s;
-            width: 100%;
         }
-
         .student-info input:focus {
             border-color: #4A90E2;
             outline: none;
         }
-
-        /* Question Section */
         .question-section {
-            background-color: #fff;
+            margin-bottom: 30px;
+            background-color: #FFFFFF;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            display: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: none; /* Ẩn các phần câu hỏi ban đầu */
         }
-
-        .question-section h2 {
-            background-color: #4A90E2;
-            color: #fff;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-            overflow-x: auto;
-        }
-
         .question {
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 1px solid #E0E4EA;
         }
-
         .options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
         }
-
         .option {
+            margin: 8px 0;
             display: flex;
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            overflow-x: auto;
-            padding: 5px 0;
         }
-
         .option input {
+            margin-right: 12px;
             accent-color: #4A90E2;
         }
-
         .option label {
-            font-size: 0.95em;
+            font-size: 1em;
             color: #333;
         }
-
         .example {
             background-color: #F9FAFB;
             padding: 15px;
             border-left: 4px solid #4A90E2;
-            border-radius: 4px;
             margin-bottom: 20px;
+            border-radius: 6px;
         }
-
         .image-placeholder {
             width: 150px;
             height: 120px;
@@ -206,295 +112,163 @@
             justify-content: center;
             margin: 10px 0;
             background-color: #F9FAFB;
-            font-size: 0.85em;
+            font-size: 0.9em;
             overflow: hidden;
         }
-
         .image-placeholder img {
             width: 100%;
             height: 100%;
             object-fit: contain;
-            loading: lazy;
         }
-
-        /* Buttons */
+        h2 {
+            background-color: #4A90E2;
+            color: #FFFFFF;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1.3em;
+            margin-top: 0;
+        }
         button {
             background-color: #4A90E2;
-            color: #fff;
+            color: #FFFFFF;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            font-size: 0.95em;
-            transition: background-color 0.3s, transform 0.1s;
-            margin: 10px 5px 0 0;
+            margin-top: 20px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            transition: background-color 0.2s, transform 0.1s;
+            margin-right: 10px;
         }
-
         button:hover {
             background-color: #357ABD;
-            transform: translateY(-2px);
+            transform: translateY(-1px);
         }
-
         button.reset {
             background-color: #EF4444;
         }
-
         button.reset:hover {
             background-color: #DC2626;
         }
-
-        /* Vietnamese text */
         .vietnamese {
             font-family: 'Roboto', sans-serif;
             font-style: italic;
             color: #6B7280;
-            margin-bottom: 10px;
-            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-size: 0.95em;
         }
-
-        /* Result Section */
         .result-section {
-            background-color: #fff;
+            margin-top: 30px;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             display: none;
         }
-
+        .error-message {
+            color: #EF4444;
+            margin-top: 15px;
+            font-size: 0.95em;
+        }
+        .student-details {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #F9FAFB;
+            border-radius: 8px;
+        }
+        .student-details p {
+            margin: 8px 0;
+            font-size: 1em;
+            color: #333;
+        }
         .result-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 15px;
         }
-
         .result-table th, .result-table td {
             border: 1px solid #E0E4EA;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             font-size: 0.95em;
         }
-
         .result-table th {
             background-color: #4A90E2;
-            color: #fff;
+            color: #FFFFFF;
+            font-weight: 500;
         }
-
         .result-table tr:nth-child(even) {
             background-color: #F9FAFB;
         }
-
         .result-table tr.total {
             font-weight: bold;
             background-color: #E5E7EB;
         }
-
-        /* Textarea */
         textarea {
-            width: 100%;
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            font-size: 1em;
             padding: 8px;
             border: 1px solid #D1D5DB;
-            border-radius: 4px;
-            font-size: 0.95em;
-            resize: vertical;
+            border-radius: 6px;
+            width: 100%;
             transition: border-color 0.2s;
         }
-
         textarea:focus {
             border-color: #4A90E2;
             outline: none;
         }
-
-        /* Feedback */
-        .answer-feedback, .text-answer-feedback {
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            border-top: 1px solid #E0E4EA;
+            color: #6B7280;
+            font-size: 0.9em;
+            font-family: 'Roboto', sans-serif;
+        }
+        /* CSS cho hiển thị đáp án đúng/sai */
+        .correct-answer {
+            color: #4A90E2; /* Xanh dương cho đáp án đúng */
+        }
+        .wrong-answer {
+            color: #EF4444; /* Đỏ cho đáp án sai */
+        }
+        .answer-feedback {
             margin-top: 8px;
             font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
+            color: #4A90E2; /* Xanh dương cho phản hồi đúng */
         }
-
-        .answer-feedback::before, .text-answer-feedback::before {
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
+        .answer-feedback.wrong {
+            color: #EF4444; /* Đỏ cho phản hồi sai */
         }
-
-        .answer-feedback.correct, .text-answer-feedback.correct {
-            color: #28A745;
+        .text-answer-feedback {
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #EF4444; /* Đỏ cho phản hồi câu viết sai */
         }
-
-        .answer-feedback.correct::before, .text-answer-feedback.correct::before {
-            content: '\f00c';
+        .text-answer-feedback.correct {
+            color: #4A90E2; /* Xanh dương cho câu viết đúng */
         }
-
-        .answer-feedback.wrong, .text-answer-feedback {
-            color: #EF4444;
-        }
-
-        .answer-feedback.wrong::before, .text-answer-feedback::before {
-            content: '\f00d';
-        }
-
-        .correct-answer {
-            color: #28A745;
-            font-weight: 500;
-        }
-
-        .wrong-answer {
-            color: #EF4444;
-            font-weight: 500;
-        }
-
-        /* Timer */
+        /* CSS cho bộ đếm thời gian */
         .timer {
             position: fixed;
             top: 20px;
             right: 20px;
             background-color: #4A90E2;
-            color: #fff;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 0.9em;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            display: none;
-            align-items: center;
-            gap: 8px;
         }
-
         .timer.warning {
             background-color: #EF4444;
-        }
-
-        .timer i {
-            font-size: 1em;
-        }
-
-        /* Error Message */
-        .error-message {
-            color: #EF4444;
-            margin: 10px 0;
-            font-size: 0.9em;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .error-message::before {
-            content: '\f071';
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            padding: 20px 0;
-            border-top: 1px solid #E0E4EA;
-            color: #6B7280;
-            font-size: 0.85em;
-        }
-
-        /* Media Queries for Mobile */
-        @media (max-width: 600px) {
-            body {
-                padding: 10px;
-                font-size: 14px;
-            }
-
-            .navbar {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .navbar a {
-                font-size: 0.85em;
-                padding: 6px 10px;
-            }
-
-            .navbar .progress-bar {
-                width: 80px;
-            }
-
-            .header h1 {
-                font-size: 1.5em;
-            }
-
-            .header h2 {
-                font-size: 1.1em;
-            }
-
-            .student-info {
-                padding: 15px;
-            }
-
-            .student-info input {
-                padding: 6px;
-                font-size: 0.9em;
-            }
-
-            .question-section {
-                padding: 15px;
-            }
-
-            .question-section h2 {
-                font-size: 1.1em;
-                padding: 8px;
-            }
-
-            .image-placeholder {
-                width: 120px;
-                height: 100px;
-            }
-
-            .option {
-                font-size: 0.9em;
-            }
-
-            button {
-                padding: 8px 15px;
-                font-size: 0.9em;
-            }
-
-            .result-table th, .result-table td {
-                padding: 8px;
-                font-size: 0.85em;
-            }
-
-            .timer {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-                font-size: 0.85em;
-            }
-
-            textarea {
-                font-size: 0.9em;
-                padding: 6px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#section-1">問題Ⅰ</a>
-            <a href="#section-2">問題II</a>
-            <a href="#section-3">問題III</a>
-            <a href="#section-4">問題IV</a>
-            <a href="#section-5">問題V</a>
-            <a href="#section-6">問題VI</a>
-            <a href="#section-7">問題VII</a>
-        </div>
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-    </nav>
-
-    <!-- Header -->
     <div class="header">
         <h1>模擬テスト</h1>
         <h2>第1～3課</h2>
@@ -502,31 +276,28 @@
         <p>（40分）</p>
     </div>
 
-    <!-- Student Info -->
     <div class="student-info">
         <div>
             <label for="name">名前（なまえ）:</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" style="width: 90%;">
         </div>
         <div>
             <label for="class">クラス:</label>
-            <input type="text" id="class" name="class">
+            <input type="text" id="class" name="class" style="width: 90%;">
         </div>
         <div>
             <label for="date">日付:</label>
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" style="width: 90%;">
         </div>
     </div>
 
-    <button id="start-test" type="button"><i class="fas fa-play"></i> Bắt đầu làm bài</button>
+    <button id="start-test" type="button">Bắt đầu làm bài</button>
     <div id="message" class="error-message"></div>
 
-    <!-- Timer -->
-    <div id="timer" class="timer"><i class="fas fa-clock"></i> Thời gian còn lại: 40:00</div>
+    <div id="timer" class="timer" style="display: none;">Thời gian còn lại: 40:00</div>
 
-    <!-- Question Sections -->
-    <div class="question-section" id="section-1">
-        <h2><i class="fas fa-question-circle"></i> 問題Ⅰ．ただしい こたえを えらんでください。 （2*3=6）</h2>
+    <div class="question-section">
+        <h2>問題Ⅰ．ただしい　こたえを　えらんでください。 　　（2*3=6）</h2>
         <div class="vietnamese">Hãy chọn câu trả lời đúng</div>
 
         <div class="example">
@@ -617,12 +388,12 @@
         </div>
     </div>
 
-    <div class="question-section" id="section-2">
-        <h2><i class="fas fa-question-circle"></i> 問題II．ただしい よみかたを えらんでください。 （2*5=10）</h2>
+    <div class="question-section">
+        <h2>問題II．ただしい　よみかたを　えらんでください。 　　（2*5=10）</h2>
         <div class="vietnamese">Hãy chọn cách đọc đúng</div>
 
         <div class="question">
-            <p>４ １：３０</p>
+            <p>４　１：３０</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q4-1" name="q4">
@@ -641,7 +412,7 @@
         </div>
 
         <div class="question">
-            <p>５ ８：４５</p>
+            <p>５　８：４５</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q5-1" name="q5">
@@ -660,7 +431,7 @@
         </div>
 
         <div class="question">
-            <p>６ ２／１５</p>
+            <p>６　２／１５</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q6-1" name="q6">
@@ -679,7 +450,7 @@
         </div>
 
         <div class="question">
-            <p>７ Thứ ３ tuần sau</p>
+            <p>７　Thứ ３ tuần sau</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q7-1" name="q7">
@@ -698,7 +469,7 @@
         </div>
 
         <div class="question">
-            <p>８ ０８０－１２３４－５６７８</p>
+            <p>８　０８０－１２３４－５６７８</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q8-1" name="q8">
@@ -717,12 +488,12 @@
         </div>
     </div>
 
-    <div class="question-section" id="section-3">
-        <h2><i class="fas fa-question-circle"></i> 問題III．（　）に はいる いちばん よいものを えらんでください。（2*5=10）</h2>
+    <div class="question-section">
+        <h2>問題III．（　　）に　はいる　いちばん　よいものを　えらんでください。（2*5=10）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất trong （　）</div>
 
         <div class="example">
-            <p>れい） いち ー（　　　）ー さん</p>
+            <p>れい）　いち　ー（　　　）ー　さん</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="example2-1" name="example2">
@@ -740,7 +511,7 @@
         </div>
 
         <div class="question">
-            <p>９ げつようび ー（　　　） ー すいようび</p>
+            <p>９　げつようび ー（　　　） ー すいようび</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q9-1" name="q9">
@@ -759,7 +530,7 @@
         </div>
 
         <div class="question">
-            <p>１０ ついたち ー（　　　） ー みっか</p>
+            <p>１０　ついたち ー（　　　） ー みっか</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q10-1" name="q10">
@@ -778,7 +549,7 @@
         </div>
 
         <div class="question">
-            <p>１１ （　　　）ー きのう ー きょう</p>
+            <p>１１　（　　　）ー きのう ー きょう</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q11-1" name="q11">
@@ -797,7 +568,7 @@
         </div>
 
         <div class="question">
-            <p>１２ いち ー に ー （　　　） ー よん</p>
+            <p>１２　いち ー に ー （　　　） ー よん</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q12-1" name="q12">
@@ -816,7 +587,7 @@
         </div>
 
         <div class="question">
-            <p>１３ せん ー （　　　）ー さんぜん</p>
+            <p>１３　せん ー （　　　）ー さんぜん</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q13-1" name="q13">
@@ -835,9 +606,9 @@
         </div>
     </div>
 
-    <div class="question-section" id="section-4">
-        <h2><i class="fas fa-question-circle"></i> 問題IV. （　）に はいる いちばん よいものを えらんでください。（2*2=4）</h2>
-        <div class="vietnamese">Hãy chọn đáp án đúng nhất trong （　）</div>
+    <div class="question-section">
+        <h2>問題IV. （　　）に　はいる　いちばん　よいものを　えらんでください。（2*2=4）</h2>
+        <div class="vietnamese">Hãy chọn đáp án đúng nhất trong （　 ）</div>
 
         <div class="example">
             <p>れい）わたし（　　　）がくせいです。</p>
@@ -858,7 +629,7 @@
         </div>
 
         <div class="question">
-            <p>１４ これ（　　　）ほんです。</p>
+            <p>１４　これ（　　　）ほんです。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q14-1" name="q14">
@@ -877,7 +648,7 @@
         </div>
 
         <div class="question">
-            <p>１５ ここ（　　　）ITMセンターです。</p>
+            <p>１５　ここ（　　　）ITMセンターです。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q15-1" name="q15">
@@ -896,45 +667,45 @@
         </div>
     </div>
 
-    <div class="question-section" id="section-5">
-        <h2><i class="fas fa-question-circle"></i> 問題V．れいのように、かいてください。（4*4=16）</h2>
+    <div class="question-section">
+        <h2>問題V．れいのように、かいてください。（4*4=16）</h2>
         <div class="vietnamese">Hãy sắp xếp lại câu theo như câu ví dụ.</div>
 
         <div class="example">
             <p>れい）これは（わたし／ほん／の）です。</p>
-            <p><u>これは わたしの ほんです</u></p>
+            <p><u>これは　わたしの　ほんです</u></p>
         </div>
 
         <div class="question">
-            <p>２８ (ほん／わたし／の／これ／は）です。</p>
-            <textarea style="height: 60px;"></textarea>
+            <p>２８　(ほん／わたし／の／これ／は）です。</p>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-28"></div>
         </div>
 
         <div class="question">
-            <p>２９ (せんせい／てちょう／の／ですか／これ／は）。</p>
-            <textarea style="height: 60px;"></textarea>
+            <p>２９　(せんせい／てちょう／の／ですか／これ／は）。</p>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-29"></div>
         </div>
 
         <div class="question">
-            <p>３０ (じしょ／あれ／じゃありません／は）。</p>
-            <textarea style="height: 60px;"></textarea>
+            <p>３０　(じしょ／あれ／じゃありません／は）。</p>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-30"></div>
         </div>
 
         <div class="question">
-            <p>３１ (いま／なんじ／ですか）。</p>
-            <textarea style="height: 60px;"></textarea>
+            <p>３１　(いま／なんじ／ですか）。</p>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-31"></div>
         </div>
     </div>
 
-    <div class="question-section" id="section-6">
-        <h2><i class="fas fa-question-circle"></i> 問題VI．（　）に はいる いちばん よいものを えらんでください。（3*5=15）</h2>
+    <div class="question-section">
+        <h2>問題VI．（　　）に　はいる　いちばん　よいものを　えらんでください。（3*5=15）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong (      ).</div>
 
-        <div style="border: 1px solid #E0E4EA; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
             <p>A：おはようございます。</p>
             <p>B：おはようございます。</p>
             <p>A：（ ３２ ）はミンさんですか。</p>
@@ -945,7 +716,6 @@
             <p>B：はい、ベトナムじんです。山田さんは（ ３６ ）ですか。</p>
             <p>A：にほんじんです。</p>
         </div>
-
         <div class="question">
             <p>３２</p>
             <div class="options">
@@ -1042,12 +812,12 @@
         </div>
     </div>
 
-    <div class="question-section" id="section-7">
-        <h2><i class="fas fa-question-circle"></i> 問題VII．Xのこたえとして いちばん よいものを えらんでください。（3*5=15）</h2>
+    <div class="question-section">
+        <h2>問題VII．Xのこたえとして　いちばん　よいものを　えらんでください。（3*5=15）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất đối với câu trả lời của X</div>
 
         <div class="example">
-            <p>れい） X: おはようございます</p>
+            <p>れい）　X: おはようございます</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="example4-1" name="example4">
@@ -1065,7 +835,7 @@
         </div>
 
         <div class="question">
-            <p>３７ X: はじめまして。わたしはタンです。</p>
+            <p>３７　X: はじめまして。わたしはタンです。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q37-1" name="q37">
@@ -1084,11 +854,11 @@
         </div>
 
         <div class="question">
-            <p>３８ X: これは なんですか。</p>
+            <p>３８　X: これは　なんですか。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q38-1" name="q38">
-                    <label for="q38-1">1. それは ほんです。</label>
+                    <label for="q38-1">1. それは　ほんです。</label>
                 </div>
                 <div class="option">
                     <input type="radio" id="q38-2" name="q38">
@@ -1103,7 +873,7 @@
         </div>
 
         <div class="question">
-            <p>３９ X: いま なんじですか。</p>
+            <p>３９　X: いま　なんじですか。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q39-1" name="q39">
@@ -1122,54 +892,52 @@
         </div>
 
         <div class="question">
-            <p>４０ X: あなたの かばんは どれですか。</p>
+            <p>４０　X: あなたの　かばんは　どれですか。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q40-1" name="q40">
-                    <label for="q40-1">1. あれは わたしの かばんです。</label>
+                    <label for="q40-1">1. あれは　わたしの　かばんです。</label>
                 </div>
                 <div class="option">
                     <input type="radio" id="q40-2" name="q40">
-                    <label for="q40-2">2. これは わたしの かばんです。</label>
+                    <label for="q40-2">2. これは　わたしの　かばんです。</label>
                 </div>
                 <div class="option">
                     <input type="radio" id="q40-3" name="q40">
-                    <label for="q40-3">3. それは わたしの かばんです。</label>
+                    <label for="q40-3">3. それは　わたしの　かばんです。</label>
                 </div>
             </div>
             <div class="answer-feedback" id="feedback-40"></div>
         </div>
 
         <div class="question">
-            <p>４１ X: あのかたは どなたですか。</p>
+            <p>４１　X: あのかたは　どなたですか。</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q41-1" name="q41">
-                    <label for="q41-1">1. わたしの せんせいです。</label>
+                    <label for="q41-1">1. わたしの　せんせいです。</label>
                 </div>
                 <div class="option">
                     <input type="radio" id="q41-2" name="q41">
-                    <label for="q41-2">2. わたしは がくせいです。</label>
+                    <label for="q41-2">2. わたしは　がくせいです。</label>
                 </div>
                 <div class="option">
                     <input type="radio" id="q41-3" name="q41">
-                    <label for="q41-3">3. あのひとは にほんじんです。</label>
+                    <label for="q41-3">3. あのひとは　にほんじんです。</label>
                 </div>
             </div>
             <div class="answer-feedback" id="feedback-41"></div>
         </div>
     </div>
 
-    <button id="submit-test" type="button" style="display: none;"><i class="fas fa-paper-plane"></i> テストを提出する (Nộp bài)</button>
+    <button id="submit-test" type="button" style="display: none;">テストを提出する (Nộp bài)</button>
     <div id="message" class="error-message"></div>
 
-    <!-- Result Section -->
     <div class="result-section" id="results">
-        <h2><i class="fas fa-chart-bar"></i> 採点結果 (Kết quả)</h2>
+        <h2>採点結果 (Kết quả)</h2>
         <div id="score-display"></div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <p>© 2025 Tài liệu kiểm tra | Thiết kế bởi Thuận</p>
     </footer>
@@ -1198,10 +966,10 @@
             'q35': 'q35-1', // は
             'q36': 'q36-3', // なん
             'q37': 'q37-2', // はじめまして。わたしはリンです。
-            'q38': 'q38-1', // それは ほんです。
+            'q38': 'q38-1', // それは　ほんです。
             'q39': 'q39-1', // じゅうじはんです。
-            'q40': 'q40-3', // それは わたしの かばんです。
-            'q41': 'q41-1' // わたしの せんせいです。
+            'q40': 'q40-3', // それは　わたしの　かばんです。
+            'q41': 'q41-1' // わたしの　せんせいです。
         };
 
         // Answer key for text questions (問題 V)
@@ -1223,14 +991,14 @@
             7: 15  // 5 questions x 3 points
         };
 
-        // Hàm chuẩn hóa chuỗi
+        // Hàm chuẩn hóa chuỗi: loại bỏ khoảng trắng thừa, dấu câu, và chuẩn hóa ký tự Unicode
         function normalizeString(str) {
             return str
-                .normalize('NFKC')
-                .trim()
-                .replace(/[\s\u3000]+/g, '')
-                .replace(/[。！？｡!?.、，]/g, '')
-                .toLowerCase();
+                .normalize('NFKC') // Chuẩn hóa Unicode (NFKC để xử lý font tiếng Nhật)
+                .trim() // Loại bỏ khoảng trắng đầu/cuối
+                .replace(/[\s\u3000]+/g, '') // Loại bỏ tất cả khoảng trắng (half-width và full-width)
+                .replace(/[。！？｡!?.、，]/g, '') // Loại bỏ dấu chấm, dấu hỏi, dấu chấm than, dấu phẩy
+                .toLowerCase(); // Chuyển về chữ thường để so sánh
         }
 
         // Hàm hiển thị đáp án đúng/sai cho câu trắc nghiệm
@@ -1241,6 +1009,7 @@
             const options = document.querySelectorAll(`input[name="${questionName}"]`);
             const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
 
+            // Đánh dấu màu cho đáp án
             options.forEach(option => {
                 const label = option.nextElementSibling;
                 if (option.id === answerKey[questionName]) {
@@ -1252,10 +1021,11 @@
                 }
             });
 
+            // Hiển thị phản hồi
             if (selectedOption) {
                 if (selectedOption.id === answerKey[questionName]) {
                     feedbackDiv.textContent = 'Đúng!';
-                    feedbackDiv.className = 'answer-feedback correct';
+                    feedbackDiv.className = 'answer-feedback';
                 } else {
                     feedbackDiv.textContent = `Đáp án đúng: ${correctOption.nextElementSibling.textContent}`;
                     feedbackDiv.className = 'answer-feedback wrong';
@@ -1274,6 +1044,10 @@
                 const userAnswer = normalizeString(textarea.value);
                 const correctAnswer = normalizeString(textAnswerKey[questionNumber]);
                 const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
+
+                console.log(`Câu ${questionNumber}:`);
+                console.log(`Câu trả lời người dùng (chuẩn hóa): "${userAnswer}"`);
+                console.log(`Đáp án đúng (chuẩn hóa): "${correctAnswer}"`);
 
                 if (userAnswer === correctAnswer) {
                     feedbackDiv.textContent = 'Đúng!';
@@ -1311,11 +1085,24 @@
                 const userAnswer = normalizeString(textarea.value);
                 const correctAnswer = normalizeString(textAnswerKey[questionNumber]);
                 
+                console.log(`Câu ${questionNumber}:`);
+                console.log(`Câu trả lời gốc: "${textarea.value}"`);
+                console.log(`Câu trả lời người dùng (chuẩn hóa): "${userAnswer}"`);
+                console.log(`Đáp án đúng (chuẩn hóa): "${correctAnswer}"`);
+                
                 if (userAnswer === correctAnswer) {
                     score += 4;
+                    console.log(`Câu ${questionNumber}: Đúng (+4 điểm)`);
+                } else {
+                    console.log(`Câu ${questionNumber}: Sai`);
+                }
+                
+                if (!userAnswer) {
+                    console.log(`Câu ${questionNumber}: Không có câu trả lời`);
                 }
             });
             
+            console.log(`Tổng điểm phần V: ${score}`);
             showTextAnswerFeedback();
             return score;
         }
@@ -1356,7 +1143,7 @@
                 ['Ngày (日付)', studentInfo.date],
                 ['Thời gian', new Date().toLocaleString('vi-VN')],
                 [],
-                ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', ' speculations xếp loại'],
+                ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', 'Đánh giá xếp loại'],
                 ['問題Ⅰ', sectionPoints[1], sectionScores[1], `${(sectionScores[1] / sectionPoints[1] * 100).toFixed(1)}%`, getGrade((sectionScores[1] / sectionPoints[1] * 100)).symbol],
                 ['問題II', sectionPoints[2], sectionScores[2], `${(sectionScores[2] / sectionPoints[2] * 100).toFixed(1)}%`, getGrade((sectionScores[2] / sectionPoints[2] * 100)).symbol],
                 ['問題III', sectionPoints[3], sectionScores[3], `${(sectionScores[3] / sectionPoints[3] * 100).toFixed(1)}%`, getGrade((sectionScores[3] / sectionPoints[3] * 100)).symbol],
@@ -1403,14 +1190,17 @@
         // Hàm xử lý nộp bài
         function submitTest() {
             try {
+                // Clear previous messages
                 document.getElementById('message').textContent = '';
 
+                // Get student information
                 const studentInfo = {
                     name: document.getElementById('name').value || 'Unknown',
                     class: document.getElementById('class').value || 'Unknown',
                     date: document.getElementById('date').value || new Date().toISOString().split('T')[0]
                 };
 
+                // Calculate scores for each section
                 const section1Score = calculateRadioSectionScore(1, 3, 2);
                 const section2Score = calculateRadioSectionScore(4, 8, 2);
                 const section3Score = calculateRadioSectionScore(9, 13, 2);
@@ -1432,8 +1222,10 @@
                 const totalScore = section1Score + section2Score + section3Score +
                                   section4Score + section5Score + section6Score + section7Score;
 
+                // Save the result to localStorage
                 saveTestResult(studentInfo, sectionScores, totalScore);
 
+                // Show results to student
                 document.getElementById('results').style.display = 'block';
                 document.getElementById('score-display').innerHTML = `
                     <div class="student-details">
@@ -1492,19 +1284,24 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button id="export-excel" style="margin-top: 20px;"><i class="fas fa-file-excel"></i> Xuất ra Excel</button>
-                    <button id="reset-test" class="reset" style="margin-top: 20px;"><i class="fas fa-redo"></i> Làm lại</button>
+                    <button id="export-excel" style="margin-top: 20px;">Xuất ra Excel</button>
+                    <button id="reset-test" class="reset" style="margin-top: 20px;">Làm lại</button>
                 `;
 
+                // Add event listener for Excel export button
                 document.getElementById('export-excel').addEventListener('click', function() {
                     exportToExcel(studentInfo, sectionScores, totalScore);
                 });
 
+                // Add event listener for reset button
                 document.getElementById('reset-test').addEventListener('click', function() {
                     window.location.reload();
                 });
 
+                // Scroll to results
                 document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+
+                // Ẩn bộ đếm thời gian
                 document.getElementById('timer').style.display = 'none';
             } catch (error) {
                 console.error('Submit error:', error);
@@ -1515,15 +1312,16 @@
 
         // Hàm bắt đầu đếm ngược thời gian
         function startTimer(duration) {
-            let timeLeft = duration * 60;
+            let timeLeft = duration * 60; // Thời gian tính bằng giây (40 phút = 2400 giây)
             const timerDisplay = document.getElementById('timer');
-            timerDisplay.style.display = 'flex';
+            timerDisplay.style.display = 'block';
 
             const timerInterval = setInterval(() => {
                 const minutes = Math.floor(timeLeft / 60);
                 const seconds = timeLeft % 60;
-                timerDisplay.innerHTML = `<i class="fas fa-clock"></i> Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                timerDisplay.textContent = `Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
+                // Cảnh báo khi còn 5 phút
                 if (timeLeft <= 300) {
                     timerDisplay.classList.add('warning');
                 }
@@ -1533,30 +1331,11 @@
                     timerDisplay.textContent = 'Hết thời gian!';
                     document.getElementById('message').textContent = 'Hết thời gian! Bài của bạn đã được tự động nộp.';
                     document.getElementById('message').className = 'error-message';
-                    submitTest();
+                    submitTest(); // Tự động nộp bài
                 }
 
                 timeLeft--;
             }, 1000);
-        }
-
-        // Hàm cập nhật thanh tiến trình
-        function updateProgress() {
-            const totalQuestions = 41;
-            let answeredQuestions = 0;
-
-            for (let i = 1; i <= 41; i++) {
-                if (i >= 28 && i <= 31) {
-                    const textarea = document.querySelectorAll('textarea')[i - 28];
-                    if (textarea.value.trim()) answeredQuestions++;
-                } else {
-                    const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
-                    if (selectedOption) answeredQuestions++;
-                }
-            }
-
-            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
-            document.getElementById('progress').style.width = `${progressPercentage}%`;
         }
 
         // Xử lý sự kiện khi nhấn nút "Bắt đầu làm bài"
@@ -1565,35 +1344,34 @@
             const className = document.getElementById('class').value.trim();
             const date = document.getElementById('date').value;
 
+            // Kiểm tra thông tin đầu vào
             if (!name || !className || !date) {
                 document.getElementById('message').textContent = 'Vui lòng điền đầy đủ thông tin: Tên, Lớp, Ngày.';
                 document.getElementById('message').className = 'error-message';
                 return;
             }
 
+            // Ẩn nút "Bắt đầu làm bài"
             document.getElementById('start-test').style.display = 'none';
             document.getElementById('message').textContent = '';
 
+            // Hiển thị các phần câu hỏi và nút nộp bài
             const questionSections = document.querySelectorAll('.question-section');
             questionSections.forEach(section => {
                 section.style.display = 'block';
             });
             document.getElementById('submit-test').style.display = 'block';
-            document.querySelector('.navbar').style.display = 'flex';
 
+            // Bắt đầu đếm ngược thời gian (40 phút)
             startTimer(40);
-
-            // Theo dõi tiến trình
-            document.querySelectorAll('input[type="radio"], textarea').forEach(element => {
-                element.addEventListener('change', updateProgress);
-            });
         });
 
         // Xử lý sự kiện khi nhấn nút "Nộp bài"
         document.getElementById('submit-test').addEventListener('click', function() {
+            // Kiểm tra textarea trống
             const textAnswers = document.querySelectorAll('textarea');
             let hasEmptyAnswer = false;
-            textAnswers.forEach((textarea) => {
+            textAnswers.forEach((textarea, index) => {
                 if (!textarea.value.trim()) {
                     hasEmptyAnswer = true;
                 }
@@ -1607,9 +1385,6 @@
 
             submitTest();
         });
-
-        // Ẩn navbar ban đầu
-        document.querySelector('.navbar').style.display = 'none';
     </script>
 </body>
 </html>
