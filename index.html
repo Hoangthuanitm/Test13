@@ -295,12 +295,6 @@
             outline: none;
         }
 
-        /* Textarea trong section-5 */
-        #section-5 textarea {
-            font-size: 1em; /* Khớp với font-size của câu hỏi */
-            line-height: 1.6;
-        }
-
         /* Feedback */
         .answer-feedback, .text-answer-feedback {
             margin-top: 6px;
@@ -480,10 +474,6 @@
                 padding: 6px;
             }
 
-            #section-5 textarea {
-                font-size: 0.875em; /* 14px, khớp với body trên mobile */
-            }
-
             .example {
                 padding: 10px;
             }
@@ -527,13 +517,34 @@
 
     <!-- Question Sections -->
     <div class="question-section" id="section-1">
-        <h2><i class="fas fa-question-circle"></i> 問題I．この しゃしんに うつっている ものを えらんでください。 （2*3=6）</h2>
-        <div class="vietnamese">Hãy chọn đồ vật xuất hiện trong hình ảnh</div>
+        <h2><i class="fas fa-question-circle"></i> 問題Ⅰ．ただしい こたえを えらんでください。 （2*3=6）</h2>
+        <div class="vietnamese">Hãy chọn câu trả lời đúng</div>
+
+        <div class="example">
+            <p>れい)</p>
+            <div class="image-placeholder">
+                <img src="https://tsukatte.com/wp-content/uploads/2019/12/book_01_green.png" alt="本">
+            </div>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="example-1" name="example" checked>
+                    <label for="example-1">1. ほん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example-2" name="example">
+                    <label for="example-2">2. ノート</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example-3" name="example">
+                    <label for="example-3">3. つくえ</label>
+                </div>
+            </div>
+        </div>
 
         <div class="question">
             <p>１</p>
             <div class="image-placeholder">
-                <img src="https://www.takadatoys.com/cdn/shop/products/eraser_01_1024x1024@2x.jpg" alt="消しゴム">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjyeZMfUCEOdxB_D-oKUy2hqXQXcN5croCuckKyohwI6SL0-CY60b6Lm4qD-vn5OiZ06lpE0KUC2Ri7ryHIkcx1sHktgzw-ftdVon3mH5pVVVzJB8cwKWGeczcEyWc-IlyXEONwXNTFo9A4/s1600/bunbougu_keshigomu.png" alt="消しゴム">
             </div>
             <div class="options">
                 <div class="option">
@@ -546,7 +557,7 @@
                 </div>
                 <div class="option">
                     <input type="radio" id="q1-3" name="q1">
-                    <label for="q1-3">3. ほん</label>
+                    <label for="q1-3">3. ペン</label>
                 </div>
             </div>
             <div class="answer-feedback" id="feedback-1"></div>
@@ -555,7 +566,7 @@
         <div class="question">
             <p>２</p>
             <div class="image-placeholder">
-                <img src="https://www.tokyoclock.co.jp/Portals/0/images/product/top/TokyoClock_Clock.jpg" alt="時計">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIoAhFEO9z139F5iw5OZJ8eTFcV18rB5Cgxw&s" alt="時計">
             </div>
             <div class="options">
                 <div class="option">
@@ -568,7 +579,7 @@
                 </div>
                 <div class="option">
                     <input type="radio" id="q2-3" name="q2">
-                    <label for="q2-3">3. かさ</label>
+                    <label for="q2-3">3. かばん</label>
                 </div>
             </div>
             <div class="answer-feedback" id="feedback-2"></div>
@@ -577,7 +588,7 @@
         <div class="question">
             <p>３</p>
             <div class="image-placeholder">
-                <img src="https://www.kyoiku-shuppan.co.jp/textbook/kyoushitsu/Classroom/kyoushitsu.png" alt="教室">
+                <img src="https://illustkun.com/wp-content/uploads/illustkun-07279-20230309-a.png" alt="教室">
             </div>
             <div class="options">
                 <div class="option">
@@ -652,7 +663,7 @@
                 </div>
                 <div class="option">
                     <input type="radio" id="q6-3" name="q6">
-                    <label for="q6-3">3. にがつ じゅうごじ</label>
+                    <label for="q6-3">3. にがつ じゅうごにち</label>
                 </div>
             </div>
             <div class="answer-feedback" id="feedback-6"></div>
@@ -1145,6 +1156,7 @@
             テストを提出する<br>( Nộp bài )
         </span>
     </button>
+    <div id="message" class="error-message"></div>
 
     <!-- Result Section -->
     <div class="result-section" id="results">
@@ -1339,14 +1351,14 @@
                 ['Ngày (日付)', studentInfo.date],
                 ['Thời gian', new Date().toLocaleString('vi-VN')],
                 [],
-                ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', 'Xếp loại'],
+                ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', ' speculations xếp loại'],
                 ['問題Ⅰ', sectionPoints[1], sectionScores[1], `${(sectionScores[1] / sectionPoints[1] * 100).toFixed(1)}%`, getGrade((sectionScores[1] / sectionPoints[1] * 100)).symbol],
                 ['問題II', sectionPoints[2], sectionScores[2], `${(sectionScores[2] / sectionPoints[2] * 100).toFixed(1)}%`, getGrade((sectionScores[2] / sectionPoints[2] * 100)).symbol],
                 ['問題III', sectionPoints[3], sectionScores[3], `${(sectionScores[3] / sectionPoints[3] * 100).toFixed(1)}%`, getGrade((sectionScores[3] / sectionPoints[3] * 100)).symbol],
                 ['問題IV', sectionPoints[4], sectionScores[4], `${(sectionScores[4] / sectionPoints[4] * 100).toFixed(1)}%`, getGrade((sectionScores[4] / sectionPoints[4] * 100)).symbol],
                 ['問題V', sectionPoints[5], sectionScores[5], `${(sectionScores[5] / sectionPoints[5] * 100).toFixed(1)}%`, getGrade((sectionScores[5] / sectionPoints[5] * 100)).symbol],
                 ['問題VI', sectionPoints[6], sectionScores[6], `${(sectionScores[6] / sectionPoints[6] * 100).toFixed(1)}%`, getGrade((sectionScores[6] / sectionPoints[6] * 100)).symbol],
-                ['問題VII', sectionPoints[7], section secondedScores[7], `${(sectionScores[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
+                ['問題VII', sectionPoints[7], sectionScores[7], `${(sectionScores[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
                 ['Tổng (合計)', totalMaxScore, totalScore, `${percentage.toFixed(1)}%`, grade.symbol]
             ];
             const currentWorksheet = XLSX.utils.aoa_to_sheet(currentWorksheetData);
@@ -1383,134 +1395,8 @@
             XLSX.writeFile(workbook, `Ket_qua_${studentInfo.name || 'Unknown'}_${studentInfo.date}.xlsx`);
         }
 
-        // Timer interval
-        let timerInterval;
-
-        // Hàm bắt đầu bài kiểm tra
-        function startTest() {
-            // Validate student info
-            const name = document.getElementById('name').value.trim();
-            const className = document.getElementById('class').value.trim();
-            const date = document.getElementById('date').value;
-            const messageDiv = document.getElementById('message');
-
-            if (!name || !className || !date) {
-                messageDiv.textContent = 'Vui lòng điền đầy đủ thông tin!';
-                return;
-            }
-
-            // Hide start button and show question sections
-            document.getElementById('start-test').style.display = 'none';
-            document.querySelectorAll('.question-section').forEach(section => {
-                section.style.display = 'block';
-            });
-            document.getElementById('submit-test').style.display = 'flex';
-            messageDiv.textContent = '';
-
-            // Start timer
-            let timeLeft = 40 * 60; // 40 minutes in seconds
-            const timerDisplay = document.getElementById('timer');
-            timerDisplay.style.display = 'flex';
-
-            timerInterval = setInterval(() => {
-                const minutes = Math.floor(timeLeft / 60);
-                const seconds = timeLeft % 60;
-                timerDisplay.textContent = `Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                
-                if (timeLeft <= 60) {
-                    timerDisplay.classList.add('warning');
-                }
-
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitTest();
-                }
-
-                timeLeft--;
-            }, 1000);
-        }
-
         // Hàm xử lý nộp bài
         function submitTest() {
-            // Stop the timer
-            clearInterval(timerInterval);
-            document.getElementById('timer').style.display = 'none';
 
-            // Collect student info
-            const studentInfo = {
-                name: document.getElementById('name').value.trim(),
-                class: document.getElementById('class').value.trim(),
-                date: document.getElementById('date').value
-            };
-
-            // Validate student info
-            if (!studentInfo.name || !studentInfo.class || !studentInfo.date) {
-                document.getElementById('message').textContent = 'Vui lòng điền đầy đủ thông tin!';
-                return;
-            }
-
-            // Calculate scores for each section
-            const sectionScores = {
-                1: calculateRadioSectionScore(1, 3, 2),   // 問題 I: 6 points
-                2: calculateRadioSectionScore(4, 8, 2),   // 問題 II: 10 points
-                3: calculateRadioSectionScore(9, 13, 2),  // 問題 III: 10 points
-                4: calculateRadioSectionScore(14, 15, 2), // 問題 IV: 4 points
-                5: calculateTextSectionScore(),           // 問題 V: 16 points
-                6: calculateRadioSectionScore(32, 36, 3), // 問題 VI: 15 points
-                7: calculateRadioSectionScore(37, 41, 3)  // 問題 VII: 15 points
-            };
-
-            // Calculate total score
-            const totalScore = Object.values(sectionScores).reduce((sum, score) => sum + score, 0);
-            const totalMaxScore = 76;
-            const percentage = (totalScore / totalMaxScore) * 100;
-            const grade = getGrade(percentage);
-
-            // Display results
-            const resultSection = document.getElementById('results');
-            resultSection.style.display = 'block';
-            document.getElementById('score-display').innerHTML = `
-                <p><strong>Tổng điểm:</strong> ${totalScore}/${totalMaxScore} (${percentage.toFixed(1)}%)</p>
-                <p><strong>Xếp loại:</strong> ${grade.letter} (${grade.symbol})</p>
-                <table class="result-table">
-                    <tr>
-                        <th>Phần</th>
-                        <th>Điểm tối đa</th>
-                        <th>Điểm đạt được</th>
-                        <th>Tỉ lệ</th>
-                        <th>Xếp loại</th>
-                    </tr>
-                    ${Object.keys(sectionScores).map(section => `
-                        <tr>
-                            <td>問題 ${section}</td>
-                            <td>${sectionPoints[section]}</td>
-                            <td>${sectionScores[section]}</td>
-                            <td>${(sectionScores[section] / sectionPoints[section] * 100).toFixed(1)}%</td>
-                            <td>${getGrade((sectionScores[section] / sectionPoints[section] * 100)).symbol}</td>
-                        </tr>
-                    `).join('')}
-                    <tr class="total">
-                        <td>Tổng</td>
-                        <td>${totalMaxScore}</td>
-                        <td>${totalScore}</td>
-                        <td>${percentage.toFixed(1)}%</td>
-                        <td>${grade.symbol}</td>
-                    </tr>
-                </table>
-            `;
-
-            // Save and export results
-            saveTestResult(studentInfo, sectionScores, totalScore);
-            exportToExcel(studentInfo, sectionScores, totalScore);
-
-            // Disable inputs
-            document.querySelectorAll('input, textarea').forEach(element => element.disabled = true);
-            document.getElementById('submit-test').style.display = 'none';
-        }
-
-        // Attach event listeners
-        document.getElementById('start-test').addEventListener('click', startTest);
-        document.getElementById('submit-test').addEventListener('click', submitTest);
-    </script>
-</body>
-</html>
+Yêu cầu : 
+Tăng size chữ khi điền vào câu trả lời ở phần 問題V
