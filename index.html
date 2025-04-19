@@ -295,9 +295,9 @@
             outline: none;
         }
 
-        /* Adjust textarea font-size for 問題 V to match question text */
+        /* Tăng kích thước chữ cho textarea trong section-5 */
         #section-5 textarea {
-            font-size: 1em; /* Match the font-size of question text in .question p */
+            font-size: 1.1em;
         }
 
         /* Feedback */
@@ -477,11 +477,6 @@
 
             textarea {
                 padding: 6px;
-            }
-
-            /* Adjust textarea font-size for 問題 V on mobile */
-            #section-5 textarea {
-                font-size: 14px; /* Match the font-size of body on mobile */
             }
 
             .example {
@@ -1372,7 +1367,7 @@
                 ['Tổng (合計)', totalMaxScore, totalScore, `${percentage.toFixed(1)}%`, grade.symbol]
             ];
             const currentWorksheet = XLSX.utils.aoa_to_sheet(currentWorksheetData);
-            XLSX.utils.bookEspecialSheet(workbook, currentWorksheet, 'Kết quả hiện tại');
+            XLSX.utils.book_append_sheet(workbook, currentWorksheet, 'Kết quả hiện tại');
 
             const results = JSON.parse(localStorage.getItem('testResults') || '[]');
             const allResultsData = [
@@ -1407,8 +1402,7 @@
 
         // Hàm xử lý nộp bài
         function submitTest() {
-            // Hàm này giữ nguyên như mã gốc
-            // ...
+            // Placeholder for submit logic
         }
     </script>
 </body>
