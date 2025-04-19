@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>模擬テスト 第1～3課</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -22,38 +22,77 @@
             background-color: #f0f4f8;
             color: #333;
             line-height: 1.6;
-            padding: 10px;
-            max-width: 100%;
-            overflow-x: hidden;
+            padding: 20px;
+            max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background-color: #4A90E2;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .navbar a:hover {
+            background-color: #357ABD;
+        }
+
+        .navbar .progress-bar {
+            background-color: #fff;
+            height: 8px;
+            border-radius: 4px;
+            width: 100px;
+            overflow: hidden;
+        }
+
+        .navbar .progress {
+            height: 100%;
+            background-color: #28A745;
+            width: 0;
+            transition: width 0.3s;
         }
 
         /* Header */
         .header {
             text-align: center;
             background-color: #fff;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
-            max-width: 100%;
+            margin-bottom: 20px;
         }
 
         .header h1 {
-            font-size: 1.5em;
+            font-size: 1.8em;
             color: #4A90E2;
-            margin-bottom: 8px;
-            overflow-wrap: break-word;
+            margin-bottom: 10px;
         }
 
         .header h2 {
-            font-size: 1.2em;
+            font-size: 1.3em;
             color: #333;
-            overflow-wrap: break-word;
         }
 
         .header p {
-            font-size: 0.9em;
+            font-size: 1em;
             color: #6B7280;
         }
 
@@ -61,13 +100,12 @@
         .student-info {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
             background-color: #fff;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
-            max-width: 100%;
+            margin-bottom: 20px;
         }
 
         .student-info div {
@@ -79,20 +117,17 @@
         .student-info label {
             font-weight: 500;
             color: #4A90E2;
-            margin-bottom: 4px;
-            font-size: 0.9em;
-            overflow-wrap: break-word;
+            margin-bottom: 5px;
+            white-space: nowrap;
         }
 
         .student-info input {
             padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 4px;
-            font-size: 0.9em;
+            font-size: 0.95em;
             transition: border-color 0.2s;
             width: 100%;
-            max-width: 100%;
-            box-sizing: border-box;
         }
 
         .student-info input:focus {
@@ -103,45 +138,46 @@
         /* Question Section */
         .question-section {
             background-color: #fff;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             display: none;
-            max-width: 100%;
         }
 
         .question-section h2 {
             background-color: #4A90E2;
             color: #fff;
-            padding: 8px;
+            padding: 10px;
             border-radius: 6px;
-            font-size: 1.1em;
-            margin-bottom: 12px;
+            font-size: 1.2em;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            overflow-wrap: break-word;
+            gap: 10px;
+            white-space: nowrap;
+            overflow-x: auto;
         }
 
         .question {
-            margin-bottom: 15px;
-            padding-bottom: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid #E0E4EA;
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .option {
             display: flex;
             align-items: center;
-            gap: 6px;
-            overflow-wrap: break-word;
-            padding: 4px 0;
+            gap: 8px;
+            white-space: nowrap;
+            overflow-x: auto;
+            padding: 5px 0;
         }
 
         .option input {
@@ -149,31 +185,28 @@
         }
 
         .option label {
-            font-size: 0.9em;
+            font-size: 0.95em;
             color: #333;
-            overflow-wrap: break-word;
-            max-width: 100%;
         }
 
         .example {
             background-color: #F9FAFB;
-            padding: 12px;
+            padding: 15px;
             border-left: 4px solid #4A90E2;
             border-radius: 4px;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .image-placeholder {
-            width: 100%;
-            max-width: 120px;
-            height: 100px;
+            width: 150px;
+            height: 120px;
             border: 1px dashed #D1D5DB;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 8px 0;
+            margin: 10px 0;
             background-color: #F9FAFB;
-            font-size: 0.8em;
+            font-size: 0.85em;
             overflow: hidden;
         }
 
@@ -189,15 +222,12 @@
             background-color: #4A90E2;
             color: #fff;
             border: none;
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.9em;
+            font-size: 0.95em;
             transition: background-color 0.3s, transform 0.1s;
-            margin: 8px 5px 0 0;
-            min-height: 40px;
-            width: 100%;
-            max-width: 200px;
+            margin: 10px 5px 0 0;
         }
 
         button:hover {
@@ -213,55 +243,36 @@
             background-color: #DC2626;
         }
 
-        /* Submit Button Specific Styling */
-        .submit-text {
-            display: inline-block;
-            text-align: center;
-            line-height: 1.4;
-            vertical-align: middle;
-        }
-
-        button#submit-test {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 15px;
-            white-space: normal;
-        }
-
         /* Vietnamese text */
         .vietnamese {
             font-family: 'Roboto', sans-serif;
             font-style: italic;
             color: #6B7280;
-            margin-bottom: 8px;
-            font-size: 0.85em;
-            overflow-wrap: break-word;
+            margin-bottom: 10px;
+            font-size: 0.9em;
         }
 
         /* Result Section */
         .result-section {
             background-color: #fff;
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 15px;
+            margin-top: 20px;
             display: none;
-            max-width: 100%;
         }
 
         .result-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 12px;
+            margin-top: 15px;
         }
 
         .result-table th, .result-table td {
             border: 1px solid #E0E4EA;
-            padding: 8px;
+            padding: 10px;
             text-align: center;
-            font-size: 0.85em;
-            overflow-wrap: break-word;
+            font-size: 0.95em;
         }
 
         .result-table th {
@@ -284,10 +295,9 @@
             padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 4px;
+            font-size: 0.95em;
             resize: vertical;
             transition: border-color 0.2s;
-            max-width: 100%;
-            box-sizing: border-box;
         }
 
         textarea:focus {
@@ -297,12 +307,11 @@
 
         /* Feedback */
         .answer-feedback, .text-answer-feedback {
-            margin-top: 6px;
-            font-size: 0.85em;
+            margin-top: 8px;
+            font-size: 0.9em;
             display: flex;
             align-items: center;
             gap: 5px;
-            overflow-wrap: break-word;
         }
 
         .answer-feedback::before, .text-answer-feedback::before {
@@ -322,12 +331,8 @@
             color: #EF4444;
         }
 
-        .answer-feedback.wrong::before {
+        .answer-feedback.wrong::before, .text-answer-feedback::before {
             content: '\f00d';
-        }
-
-        .text-answer-feedback::before {
-            content: none;
         }
 
         .correct-answer {
@@ -343,19 +348,18 @@
         /* Timer */
         .timer {
             position: fixed;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             background-color: #4A90E2;
             color: #fff;
-            padding: 6px 12px;
+            padding: 8px 15px;
             border-radius: 6px;
-            font-size: 0.85em;
+            font-size: 0.9em;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             display: none;
             align-items: center;
-            gap: 6px;
-            max-width: 90%;
+            gap: 8px;
         }
 
         .timer.warning {
@@ -363,128 +367,133 @@
         }
 
         .timer i {
-            font-size: 0.9em;
+            font-size: 1em;
         }
 
         /* Error Message */
         .error-message {
             color: #EF4444;
-            margin: 8px 0;
-            font-size: 0.85em;
+            margin: 10px 0;
+            font-size: 0.9em;
             display: flex;
             align-items: center;
             gap: 5px;
-            overflow-wrap: break-word;
         }
 
         .error-message::before {
-            content: none;
+            content: '\f071';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            margin-top: 20px;
-            padding: 15px 0;
+            margin-top: 30px;
+            padding: 20px 0;
             border-top: 1px solid #E0E4EA;
             color: #6B7280;
-            font-size: 0.8em;
-            overflow-wrap: break-word;
+            font-size: 0.85em;
         }
 
         /* Media Queries for Mobile */
         @media (max-width: 600px) {
             body {
-                padding: 8px;
+                padding: 10px;
                 font-size: 14px;
             }
 
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .navbar a {
+                font-size: 0.85em;
+                padding: 6px 10px;
+            }
+
+            .navbar .progress-bar {
+                width: 80px;
+            }
+
             .header h1 {
-                font-size: 1.3em;
+                font-size: 1.5em;
             }
 
             .header h2 {
-                font-size: 1em;
-            }
-
-            .header p {
-                font-size: 0.85em;
+                font-size: 1.1em;
             }
 
             .student-info {
-                padding: 12px;
-            }
-
-            .student-info label {
-                font-size: 0.85em;
+                padding: 15px;
             }
 
             .student-info input {
                 padding: 6px;
-                font-size: 0.85em;
+                font-size: 0.9em;
             }
 
             .question-section {
-                padding: 12px;
+                padding: 15px;
             }
 
             .question-section h2 {
-                font-size: 1em;
-                padding: 6px;
+                font-size: 1.1em;
+                padding: 8px;
             }
 
             .image-placeholder {
-                max-width: 100px;
-                height: 80px;
+                width: 120px;
+                height: 100px;
             }
 
-            .option label {
-                font-size: 0.85em;
+            .option {
+                font-size: 0.9em;
             }
 
             button {
-                padding: 6px 12px;
-                font-size: 0.85em;
-                min-height: 36px;
-                max-width: 180px;
-            }
-
-            .submit-text {
-                font-size: 0.8em;
-            }
-
-            button#submit-test {
-                padding: 6px 12px;
-                line-height: 1.3;
+                padding: 8px 15px;
+                font-size: 0.9em;
             }
 
             .result-table th, .result-table td {
-                padding: 6px;
-                font-size: 0.8em;
+                padding: 8px;
+                font-size: 0.85em;
             }
 
             .timer {
-                top: 8px;
-                right: 8px;
-                padding: 5px 10px;
-                font-size: 0.8em;
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.85em;
             }
 
             textarea {
+                font-size: 0.9em;
                 padding: 6px;
-            }
-
-            .example {
-                padding: 10px;
-            }
-
-            .vietnamese {
-                font-size: 0.8em;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-links">
+            <a href="#section-1">問題Ⅰ</a>
+            <a href="#section-2">問題II</a>
+            <a href="#section-3">問題III</a>
+            <a href="#section-4">問題IV</a>
+            <a href="#section-5">問題V</a>
+            <a href="#section-6">問題VI</a>
+            <a href="#section-7">問題VII</a>
+        </div>
+        <div class="progress-bar">
+            <div class="progress" id="progress"></div>
+        </div>
+    </nav>
+
     <!-- Header -->
     <div class="header">
         <h1>模擬テスト</h1>
@@ -925,7 +934,7 @@
         <h2><i class="fas fa-question-circle"></i> 問題VI．（　）に はいる いちばん よいものを えらんでください。（3*5=15）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong (      ).</div>
 
-        <div style="border: 1px solid #E0E4EA; padding: 12px; border-radius: 5px; margin-bottom: 15px;">
+        <div style="border: 1px solid #E0E4EA; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
             <p>A：おはようございます。</p>
             <p>B：おはようございます。</p>
             <p>A：（ ３２ ）はミンさんですか。</p>
@@ -1151,11 +1160,7 @@
         </div>
     </div>
 
-    <button id="submit-test" type="button" style="display: none;">
-        <span class="submit-text">
-            テストを提出する<br>( Nộp bài )
-        </span>
-    </button>
+    <button id="submit-test" type="button" style="display: none;"><i class="fas fa-paper-plane"></i> テストを提出する (Nộp bài)</button>
     <div id="message" class="error-message"></div>
 
     <!-- Result Section -->
@@ -1397,3 +1402,214 @@
 
         // Hàm xử lý nộp bài
         function submitTest() {
+            try {
+                document.getElementById('message').textContent = '';
+
+                const studentInfo = {
+                    name: document.getElementById('name').value || 'Unknown',
+                    class: document.getElementById('class').value || 'Unknown',
+                    date: document.getElementById('date').value || new Date().toISOString().split('T')[0]
+                };
+
+                const section1Score = calculateRadioSectionScore(1, 3, 2);
+                const section2Score = calculateRadioSectionScore(4, 8, 2);
+                const section3Score = calculateRadioSectionScore(9, 13, 2);
+                const section4Score = calculateRadioSectionScore(14, 15, 2);
+                const section5Score = calculateTextSectionScore();
+                const section6Score = calculateRadioSectionScore(32, 36, 3);
+                const section7Score = calculateRadioSectionScore(37, 41, 3);
+
+                const sectionScores = {
+                    1: section1Score,
+                    2: section2Score,
+                    3: section3Score,
+                    4: section4Score,
+                    5: section5Score,
+                    6: section6Score,
+                    7: section7Score
+                };
+
+                const totalScore = section1Score + section2Score + section3Score +
+                                  section4Score + section5Score + section6Score + section7Score;
+
+                saveTestResult(studentInfo, sectionScores, totalScore);
+
+                document.getElementById('results').style.display = 'block';
+                document.getElementById('score-display').innerHTML = `
+                    <div class="student-details">
+                        <p><strong>名前 (Tên):</strong> ${studentInfo.name}</p>
+                        <p><strong>クラス (Lớp):</strong> ${studentInfo.class}</p>
+                        <p><strong>日付 (Ngày):</strong> ${studentInfo.date}</p>
+                    </div>
+                    <table class="result-table">
+                        <thead>
+                            <tr>
+                                <th>問題 (Phần)</th>
+                                <th>配点 (Điểm tối đa)</th>
+                                <th>得点 (Điểm đạt được)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>問題Ⅰ</td>
+                                <td>${sectionPoints[1]}</td>
+                                <td>${sectionScores[1]}</td>
+                            </tr>
+                            <tr>
+                                <td>問題II</td>
+                                <td>${sectionPoints[2]}</td>
+                                <td>${sectionScores[2]}</td>
+                            </tr>
+                            <tr>
+                                <td>問題III</td>
+                                <td>${sectionPoints[3]}</td>
+                                <td>${sectionScores[3]}</td>
+                            </tr>
+                            <tr>
+                                <td>問題IV</td>
+                                <td>${sectionPoints[4]}</td>
+                                <td>${sectionScores[4]}</td>
+                            </tr>
+                            <tr>
+                                <td>問題V</td>
+                                <td>${sectionPoints[5]}</td>
+                                <td>${sectionScores[5]}</td>
+                            </tr>
+                            <tr>
+                                <td>問題VI</td>
+                                <td>${sectionPoints[6]}</td>
+                                <td>${sectionScores[6]}</td>
+                            </tr>
+                            <tr>
+                                <td>問題VII</td>
+                                <td>${sectionPoints[7]}</td>
+                                <td>${sectionScores[7]}</td>
+                            </tr>
+                            <tr class="total">
+                                <td>合計 (Tổng)</td>
+                                <td>76</td>
+                                <td>${totalScore}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button id="export-excel" style="margin-top: 20px;"><i class="fas fa-file-excel"></i> Xuất ra Excel</button>
+                    <button id="reset-test" class="reset" style="margin-top: 20px;"><i class="fas fa-redo"></i> Làm lại</button>
+                `;
+
+                document.getElementById('export-excel').addEventListener('click', function() {
+                    exportToExcel(studentInfo, sectionScores, totalScore);
+                });
+
+                document.getElementById('reset-test').addEventListener('click', function() {
+                    window.location.reload();
+                });
+
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+                document.getElementById('timer').style.display = 'none';
+            } catch (error) {
+                console.error('Submit error:', error);
+                document.getElementById('message').textContent = `エラー: テストの提出に失敗しました。${error.message}`;
+                document.getElementById('message').className = 'error-message';
+            }
+        }
+
+        // Hàm bắt đầu đếm ngược thời gian
+        function startTimer(duration) {
+            let timeLeft = duration * 60;
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.style.display = 'flex';
+
+            const timerInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.innerHTML = `<i class="fas fa-clock"></i> Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+
+                if (timeLeft <= 300) {
+                    timerDisplay.classList.add('warning');
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = 'Hết thời gian!';
+                    document.getElementById('message').textContent = 'Hết thời gian! Bài của bạn đã được tự động nộp.';
+                    document.getElementById('message').className = 'error-message';
+                    submitTest();
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Hàm cập nhật thanh tiến trình
+        function updateProgress() {
+            const totalQuestions = 41;
+            let answeredQuestions = 0;
+
+            for (let i = 1; i <= 41; i++) {
+                if (i >= 28 && i <= 31) {
+                    const textarea = document.querySelectorAll('textarea')[i - 28];
+                    if (textarea.value.trim()) answeredQuestions++;
+                } else {
+                    const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (selectedOption) answeredQuestions++;
+                }
+            }
+
+            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
+            document.getElementById('progress').style.width = `${progressPercentage}%`;
+        }
+
+        // Xử lý sự kiện khi nhấn nút "Bắt đầu làm bài"
+        document.getElementById('start-test').addEventListener('click', function() {
+            const name = document.getElementById('name').value.trim();
+            const className = document.getElementById('class').value.trim();
+            const date = document.getElementById('date').value;
+
+            if (!name || !className || !date) {
+                document.getElementById('message').textContent = 'Vui lòng điền đầy đủ thông tin: Tên, Lớp, Ngày.';
+                document.getElementById('message').className = 'error-message';
+                return;
+            }
+
+            document.getElementById('start-test').style.display = 'none';
+            document.getElementById('message').textContent = '';
+
+            const questionSections = document.querySelectorAll('.question-section');
+            questionSections.forEach(section => {
+                section.style.display = 'block';
+            });
+            document.getElementById('submit-test').style.display = 'block';
+            document.querySelector('.navbar').style.display = 'flex';
+
+            startTimer(40);
+
+            // Theo dõi tiến trình
+            document.querySelectorAll('input[type="radio"], textarea').forEach(element => {
+                element.addEventListener('change', updateProgress);
+            });
+        });
+
+        // Xử lý sự kiện khi nhấn nút "Nộp bài"
+        document.getElementById('submit-test').addEventListener('click', function() {
+            const textAnswers = document.querySelectorAll('textarea');
+            let hasEmptyAnswer = false;
+            textAnswers.forEach((textarea) => {
+                if (!textarea.value.trim()) {
+                    hasEmptyAnswer = true;
+                }
+            });
+
+            if (hasEmptyAnswer) {
+                document.getElementById('message').textContent = 'Vui lòng trả lời tất cả các câu trong phần 問題 V.';
+                document.getElementById('message').className = 'error-message';
+                return;
+            }
+
+            submitTest();
+        });
+
+        // Ẩn navbar ban đầu
+        document.querySelector('.navbar').style.display = 'none';
+    </script>
+</body>
+</html>
