@@ -28,51 +28,6 @@
             margin: 0 auto;
         }
 
-        /* Navigation Bar */
-        .navbar {
-            position: sticky;
-            top: 0;
-            background-color: #4A90E2;
-            padding: 8px 10px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            align-items: flex-start;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            transition: background-color 0.3s;
-            overflow-wrap: break-word;
-            max-width: 100%;
-        }
-
-        .navbar a:hover {
-            background-color: #357ABD;
-        }
-
-        .navbar .progress-bar {
-            background-color: #fff;
-            height: 6px;
-            border-radius: 4px;
-            width: 100%;
-            max-width: 100px;
-            overflow: hidden;
-        }
-
-        .navbar .progress {
-            height: 100%;
-            background-color: #28A745;
-            width: 0;
-            transition: width 0.3s;
-        }
-
         /* Header */
         .header {
             text-align: center;
@@ -427,20 +382,6 @@
                 font-size: 14px;
             }
 
-            .navbar {
-                padding: 6px;
-                gap: 6px;
-            }
-
-            .navbar a {
-                font-size: 0.8em;
-                padding: 5px 8px;
-            }
-
-            .navbar .progress-bar {
-                width: 80px;
-            }
-
             .header h1 {
                 font-size: 1.3em;
             }
@@ -519,22 +460,6 @@
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="nav-links">
-            <a href="#section-1">問題Ⅰ</a>
-            <a href="#section-2">問題II</a>
-            <a href="#section-3">問題III</a>
-            <a href="#section-4">問題IV</a>
-            <a href="#section-5">問題V</a>
-            <a href="#section-6">問題VI</a>
-            <a href="#section-7">問題VII</a>
-        </div>
-        <div class="progress-bar">
-            <div class="progress" id="progress"></div>
-        </div>
-    </nav>
-
     <!-- Header -->
     <div class="header">
         <h1>模擬テスト</h1>
@@ -1446,6 +1371,21 @@
             try {
                 document.getElementById('message').textContent = '';
 
+                const textAnswers = document.querySelectorAll('textarea');
+                let hasEmptyAnswer = false;
+                textAnswers.forEach((textarea) => {
+                    if (!textarea.value.trim()) {
+                        hasEmptyAnswer = true;
+                    }
+                });
+
+                if (hasEmptyAnswer) {
+                    document.getElementById('message').textContent = 'Vui lòng trả lời tất cả các câu trong phần 問題 V.';
+                    document.getElementById('message').className = 'error-message';
+                    document.getElementById('section-5').scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+
                 const studentInfo = {
                     name: document.getElementById('name').value || 'Unknown',
                     class: document.getElementById('class').value || 'Unknown',
@@ -1581,25 +1521,6 @@
             }, 1000);
         }
 
-        // Hàm cập nhật thanh tiến trình
-        function updateProgress() {
-            const totalQuestions = 41;
-            let answeredQuestions = 0;
-
-            for (let i = 1; i <= 41; i++) {
-                if (i >= 28 && i <= 31) {
-                    const textarea = document.querySelectorAll('textarea')[i - 28];
-                    if (textarea.value.trim()) answeredQuestions++;
-                } else {
-                    const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
-                    if (selectedOption) answeredQuestions++;
-                }
-            }
-
-            const progressPercentage = (answeredQuestions / totalQuestions) * 100;
-            document.getElementById('progress').style.width = `${progressPercentage}%`;
-        }
-
         // Xử lý sự kiện khi nhấn nút "Bắt đầu làm bài"
         document.getElementById('start-test').addEventListener('click', function() {
             const name = document.getElementById('name').value.trim();
@@ -1620,37 +1541,14 @@
                 section.style.display = 'block';
             });
             document.getElementById('submit-test').style.display = 'block';
-            document.querySelector('.navbar').style.display = 'flex';
 
             startTimer(40);
-
-            // Theo dõi tiến trình
-            document.querySelectorAll('input[type="radio"], textarea').forEach(element => {
-                element.addEventListener('change', updateProgress);
-            });
         });
 
         // Xử lý sự kiện khi nhấn nút "Nộp bài"
         document.getElementById('submit-test').addEventListener('click', function() {
-            const textAnswers = document.querySelectorAll('textarea');
-            let hasEmptyAnswer = false;
-            textAnswers.forEach((textarea) => {
-                if (!textarea.value.trim()) {
-                    hasEmptyAnswer = true;
-                }
-            });
-
-            if (hasEmptyAnswer) {
-                document.getElementById('message').textContent = 'Vui lòng trả lời tất cả các câu trong phần 問題 V.';
-                document.getElementById('message').className = 'error-message';
-                return;
-            }
-
             submitTest();
         });
-
-        // Ẩn navbar ban đầu
-        document.querySelector('.navbar').style.display = 'none';
     </script>
 </body>
 </html>
