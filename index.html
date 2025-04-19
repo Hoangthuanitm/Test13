@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>模擬テスト 第1～3課</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -22,8 +22,9 @@
             background-color: #f0f4f8;
             color: #333;
             line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
+            padding: 10px;
+            max-width: 100%;
+            overflow-x: hidden;
             margin: 0 auto;
         }
 
@@ -32,23 +33,24 @@
             position: sticky;
             top: 0;
             background-color: #4A90E2;
-            padding: 10px 20px;
+            padding: 8px 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
         }
 
         .navbar a {
             color: white;
             text-decoration: none;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 4px;
-            font-size: 0.9em;
+            font-size: 0.85em;
             transition: background-color 0.3s;
-            white-space: nowrap;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .navbar a:hover {
@@ -57,9 +59,10 @@
 
         .navbar .progress-bar {
             background-color: #fff;
-            height: 8px;
+            height: 6px;
             border-radius: 4px;
-            width: 100px;
+            width: 100%;
+            max-width: 100px;
             overflow: hidden;
         }
 
@@ -74,25 +77,28 @@
         .header {
             text-align: center;
             background-color: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            max-width: 100%;
         }
 
         .header h1 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             color: #4A90E2;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            overflow-wrap: break-word;
         }
 
         .header h2 {
-            font-size: 1.3em;
+            font-size: 1.2em;
             color: #333;
+            overflow-wrap: break-word;
         }
 
         .header p {
-            font-size: 1em;
+            font-size: 0.9em;
             color: #6B7280;
         }
 
@@ -100,12 +106,13 @@
         .student-info {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             background-color: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            max-width: 100%;
         }
 
         .student-info div {
@@ -117,17 +124,20 @@
         .student-info label {
             font-weight: 500;
             color: #4A90E2;
-            margin-bottom: 5px;
-            white-space: nowrap;
+            margin-bottom: 4px;
+            font-size: 0.9em;
+            overflow-wrap: break-word;
         }
 
         .student-info input {
             padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 4px;
-            font-size: 0.95em;
+            font-size: 0.9em;
             transition: border-color 0.2s;
             width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .student-info input:focus {
@@ -138,46 +148,45 @@
         /* Question Section */
         .question-section {
             background-color: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             display: none;
+            max-width: 100%;
         }
 
         .question-section h2 {
             background-color: #4A90E2;
             color: #fff;
-            padding: 10px;
+            padding: 8px;
             border-radius: 6px;
-            font-size: 1.2em;
-            margin-bottom: 15px;
+            font-size: 1.1em;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            white-space: nowrap;
-            overflow-x: auto;
+            gap: 8px;
+            overflow-wrap: break-word;
         }
 
         .question {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 12px;
             border-bottom: 1px solid #E0E4EA;
         }
 
         .options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .option {
             display: flex;
             align-items: center;
-            gap: 8px;
-            white-space: nowrap;
-            overflow-x: auto;
-            padding: 5px 0;
+            gap: 6px;
+            overflow-wrap: break-word;
+            padding: 4px 0;
         }
 
         .option input {
@@ -185,28 +194,31 @@
         }
 
         .option label {
-            font-size: 0.95em;
+            font-size: 0.9em;
             color: #333;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .example {
             background-color: #F9FAFB;
-            padding: 15px;
+            padding: 12px;
             border-left: 4px solid #4A90E2;
             border-radius: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .image-placeholder {
-            width: 150px;
-            height: 120px;
+            width: 100%;
+            max-width: 120px;
+            height: 100px;
             border: 1px dashed #D1D5DB;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 10px 0;
+            margin: 8px 0;
             background-color: #F9FAFB;
-            font-size: 0.85em;
+            font-size: 0.8em;
             overflow: hidden;
         }
 
@@ -222,12 +234,15 @@
             background-color: #4A90E2;
             color: #fff;
             border: none;
-            padding: 10px 20px;
+            padding: 8px 15px;
             border-radius: 6px;
             cursor: pointer;
-            font-size: 0.95em;
+            font-size: 0.9em;
             transition: background-color 0.3s, transform 0.1s;
-            margin: 10px 5px 0 0;
+            margin: 8px 5px 0 0;
+            min-height: 40px;
+            width: 100%;
+            max-width: 200px;
         }
 
         button:hover {
@@ -248,31 +263,34 @@
             font-family: 'Roboto', sans-serif;
             font-style: italic;
             color: #6B7280;
-            margin-bottom: 10px;
-            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+            overflow-wrap: break-word;
         }
 
         /* Result Section */
         .result-section {
             background-color: #fff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
+            margin-top: 15px;
             display: none;
+            max-width: 100%;
         }
 
         .result-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            margin-top: 12px;
         }
 
         .result-table th, .result-table td {
             border: 1px solid #E0E4EA;
-            padding: 10px;
+            padding: 8px;
             text-align: center;
-            font-size: 0.95em;
+            font-size: 0.85em;
+            overflow-wrap: break-word;
         }
 
         .result-table th {
@@ -295,9 +313,11 @@
             padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 4px;
-            font-size: 0.95em;
+            font-size: 0.9em;
             resize: vertical;
             transition: border-color 0.2s;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         textarea:focus {
@@ -307,11 +327,12 @@
 
         /* Feedback */
         .answer-feedback, .text-answer-feedback {
-            margin-top: 8px;
-            font-size: 0.9em;
+            margin-top: 6px;
+            font-size: 0.85em;
             display: flex;
             align-items: center;
             gap: 5px;
+            overflow-wrap: break-word;
         }
 
         .answer-feedback::before, .text-answer-feedback::before {
@@ -348,18 +369,19 @@
         /* Timer */
         .timer {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             background-color: #4A90E2;
             color: #fff;
-            padding: 8px 15px;
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.9em;
+            font-size: 0.85em;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             display: none;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
+            max-width: 90%;
         }
 
         .timer.warning {
@@ -367,17 +389,18 @@
         }
 
         .timer i {
-            font-size: 1em;
+            font-size: 0.9em;
         }
 
         /* Error Message */
         .error-message {
             color: #EF4444;
-            margin: 10px 0;
-            font-size: 0.9em;
+            margin: 8px 0;
+            font-size: 0.85em;
             display: flex;
             align-items: center;
             gap: 5px;
+            overflow-wrap: break-word;
         }
 
         .error-message::before {
@@ -389,29 +412,29 @@
         /* Footer */
         footer {
             text-align: center;
-            margin-top: 30px;
-            padding: 20px 0;
+            margin-top: 20px;
+            padding: 15px 0;
             border-top: 1px solid #E0E4EA;
             color: #6B7280;
-            font-size: 0.85em;
+            font-size: 0.8em;
+            overflow-wrap: break-word;
         }
 
         /* Media Queries for Mobile */
         @media (max-width: 600px) {
             body {
-                padding: 10px;
+                padding: 8px;
                 font-size: 14px;
             }
 
             .navbar {
-                flex-direction: column;
-                gap: 10px;
-                padding: 10px;
+                padding: 6px;
+                gap: 6px;
             }
 
             .navbar a {
-                font-size: 0.85em;
-                padding: 6px 10px;
+                font-size: 0.8em;
+                padding: 5px 8px;
             }
 
             .navbar .progress-bar {
@@ -419,60 +442,78 @@
             }
 
             .header h1 {
-                font-size: 1.5em;
+                font-size: 1.3em;
             }
 
             .header h2 {
-                font-size: 1.1em;
+                font-size: 1em;
+            }
+
+            .header p {
+                font-size: 0.85em;
             }
 
             .student-info {
-                padding: 15px;
+                padding: 12px;
+            }
+
+            .student-info label {
+                font-size: 0.85em;
             }
 
             .student-info input {
                 padding: 6px;
-                font-size: 0.9em;
+                font-size: 0.85em;
             }
 
             .question-section {
-                padding: 15px;
+                padding: 12px;
             }
 
             .question-section h2 {
-                font-size: 1.1em;
-                padding: 8px;
+                font-size: 1em;
+                padding: 6px;
             }
 
             .image-placeholder {
-                width: 120px;
-                height: 100px;
+                max-width: 100px;
+                height: 80px;
             }
 
-            .option {
-                font-size: 0.9em;
+            .option label {
+                font-size: 0.85em;
             }
 
             button {
-                padding: 8px 15px;
-                font-size: 0.9em;
+                padding: 6px 12px;
+                font-size: 0.85em;
+                min-height: 36px;
+                max-width: 180px;
             }
 
             .result-table th, .result-table td {
-                padding: 8px;
-                font-size: 0.85em;
+                padding: 6px;
+                font-size: 0.8em;
             }
 
             .timer {
-                top: 10px;
-                right: 10px;
-                padding: 6px 12px;
-                font-size: 0.85em;
+                top: 8px;
+                right: 8px;
+                padding: 5px 10px;
+                font-size: 0.8em;
             }
 
             textarea {
-                font-size: 0.9em;
+                font-size: 0.85em;
                 padding: 6px;
+            }
+
+            .example {
+                padding: 10px;
+            }
+
+            .vietnamese {
+                font-size: 0.8em;
             }
         }
     </style>
@@ -934,7 +975,7 @@
         <h2><i class="fas fa-question-circle"></i> 問題VI．（　）に はいる いちばん よいものを えらんでください。（3*5=15）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong (      ).</div>
 
-        <div style="border: 1px solid #E0E4EA; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+        <div style="border: 1px solid #E0E4EA; padding: 12px; border-radius: 5px; margin-bottom: 15px;">
             <p>A：おはようございます。</p>
             <p>B：おはようございます。</p>
             <p>A：（ ３２ ）はミンさんですか。</p>
