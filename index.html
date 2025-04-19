@@ -295,6 +295,1521 @@
             outline: none;
         }
 
+        /* Textarea trong section-5 */
+        #section-5 textarea {
+            font-size: 1em; /* Khớp với font-size của câu hỏi */
+            line-height: 1.6;
+        }
+
+        /* Feedback */
+        .answer-feedback, .text-answer-feedback {
+            margin-top: 6px;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            overflow-wrap: break-word;
+        }
+
+        .answer-feedback::before, .text-answer-feedback::before {
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+        }
+
+        .answer-feedback.correct, .text-answer-feedback.correct {
+            color: #28A745;
+        }
+
+        .answer-feedback.correct::before, .text-answer-feedback.correct::before {
+            content: '\f00c';
+        }
+
+        .answer-feedback.wrong, .text-answer-feedback {
+            color: #EF4444;
+        }
+
+        .answer-feedback.wrong::before {
+            content: '\f00d';
+        }
+
+        .text-answer-feedback::before {
+            content: none;
+        }
+
+        .correct-answer {
+            color: #28A745;
+            font-weight: 500;
+        }
+
+        .wrong-answer {
+            color: #EF4444;
+            font-weight: 500;
+        }
+
+        /* Timer */
+        .timer {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #4A90E2;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 6px;
+            max-width: 90%;
+        }
+
+        .timer.warning {
+            background-color: #EF4444;
+        }
+
+        .timer i {
+            font-size: 0.9em;
+        }
+
+        /* Error Message */
+        .error-message {
+            color: #EF4444;
+            margin: 8px 0;
+            font-size: 0.85em;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            overflow-wrap: break-word;
+        }
+
+        .error-message::before {
+            content: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 0;
+            border-top: 1px solid #E0E4EA;
+            color: #6B7280;
+            font-size: 0.8em;
+            overflow-wrap: break-word;
+        }
+
+        /* Media Queries for Mobile */
+        @media (max-width: 600px) {
+            body {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .header h1 {
+                font-size: 1.3em;
+            }
+
+            .header h2 {
+                font-size: 1em;
+            }
+
+            .header p {
+                font-size: 0.85em;
+            }
+
+            .student-info {
+                padding: 12px;
+            }
+
+            .student-info label {
+                font-size: 0.85em;
+            }
+
+            .student-info input {
+                padding: 6px;
+                font-size: 0.85em;
+            }
+
+            .question-section {
+                padding: 12px;
+            }
+
+            .question-section h2 {
+                font-size: 1em;
+                padding: 6px;
+            }
+
+            .image-placeholder {
+                max-width: 100px;
+                height: 80px;
+            }
+
+            .option label {
+                font-size: 0.85em;
+            }
+
+            button {
+                padding: 6px 12px;
+                font-size: 0.85em;
+                min-height: 36px;
+                max-width: 180px;
+            }
+
+            .submit-text {
+                font-size: 0.8em;
+            }
+
+            button#submit-test {
+                padding: 6px 12px;
+                line-height: 1.3;
+            }
+
+            .result-table th, .result-table td {
+                padding: 6px;
+                font-size: 0.8em;
+            }
+
+            .timer {
+                top: 8px;
+                right: 8px;
+                padding: 5px 10px;
+                font-size: 0.8em;
+            }
+
+            textarea {
+                padding: 6px;
+            }
+
+            #section-5 textarea {
+                font-size: 0.875em; /* 14px, khớp với body trên mobile */
+            }
+
+            .example {
+                padding: 10px;
+            }
+
+            .vietnamese {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>模擬テスト</h1>
+        <h2>第1～3課</h2>
+        <p>げんごちしき（もじ・ごい／文法・読解）</p>
+        <p>（40分）</p>
+    </div>
+
+    <!-- Student Info -->
+    <div class="student-info">
+        <div>
+            <label for="name">名前（なまえ）:</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div>
+            <label for="class">クラス:</label>
+            <input type="text" id="class" name="class">
+        </div>
+        <div>
+            <label for="date">日付:</label>
+            <input type="date" id="date" name="date">
+        </div>
+    </div>
+
+    <button id="start-test" type="button"><i class="fas fa-play"></i> Bắt đầu làm bài</button>
+    <div id="message" class="error-message"></div>
+
+    <!-- Timer -->
+    <div id="timer" class="timer"><i class="fas fa-clock"></i> Thời gian còn lại: 40:00</div>
+
+    <!-- Question Sections -->
+    <div class="question-section" id="section-1">
+        <h2><i class="fas fa-question-circle"></i> 問題I．この しゃしんに うつっている ものを えらんでください。 （2*3=6）</h2>
+        <div class="vietnamese">Hãy chọn đồ vật xuất hiện trong hình ảnh</div>
+
+        <div class="question">
+            <p>１</p>
+            <div class="image-placeholder">
+                <img src="https://www.takadatoys.com/cdn/shop/products/eraser_01_1024x1024@2x.jpg" alt="消しゴム">
+            </div>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q1-1" name="q1">
+                    <label for="q1-1">1. けしゴム</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q1-2" name="q1">
+                    <label for="q1-2">2. えんぴつ</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q1-3" name="q1">
+                    <label for="q1-3">3. ほん</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-1"></div>
+        </div>
+
+        <div class="question">
+            <p>２</p>
+            <div class="image-placeholder">
+                <img src="https://www.tokyoclock.co.jp/Portals/0/images/product/top/TokyoClock_Clock.jpg" alt="時計">
+            </div>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q2-1" name="q2">
+                    <label for="q2-1">1. とけい</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q2-2" name="q2">
+                    <label for="q2-2">2. でんわ</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q2-3" name="q2">
+                    <label for="q2-3">3. かさ</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-2"></div>
+        </div>
+
+        <div class="question">
+            <p>３</p>
+            <div class="image-placeholder">
+                <img src="https://www.kyoiku-shuppan.co.jp/textbook/kyoushitsu/Classroom/kyoushitsu.png" alt="教室">
+            </div>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q3-1" name="q3">
+                    <label for="q3-1">1. きょうしつ</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q3-2" name="q3">
+                    <label for="q3-2">2. としょかん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q3-3" name="q3">
+                    <label for="q3-3">3. へや</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-3"></div>
+        </div>
+    </div>
+
+    <div class="question-section" id="section-2">
+        <h2><i class="fas fa-question-circle"></i> 問題II．ただしい よみかたを えらんでください。 （2*5=10）</h2>
+        <div class="vietnamese">Hãy chọn cách đọc đúng</div>
+
+        <div class="question">
+            <p>４ １：３０</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q4-1" name="q4">
+                    <label for="q4-1">1. いちじ さんじゅっぶん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q4-2" name="q4">
+                    <label for="q4-2">2. いちじ さんじっぶん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q4-3" name="q4">
+                    <label for="q4-3">3. いちじはん</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-4"></div>
+        </div>
+
+        <div class="question">
+            <p>５ ８：４５</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q5-1" name="q5">
+                    <label for="q5-1">1. はちじ よんじゅうごふん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q5-2" name="q5">
+                    <label for="q5-2">2. はちじ よじゅうごふん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q5-3" name="q5">
+                    <label for="q5-3">3. くじ よんじゅっぷん</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-5"></div>
+        </div>
+
+        <div class="question">
+            <p>６ ２／１５</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q6-1" name="q6">
+                    <label for="q6-1">1. にがつ じゅうごにち</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q6-2" name="q6">
+                    <label for="q6-2">2. ふつか じゅうごにち</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q6-3" name="q6">
+                    <label for="q6-3">3. にがつ じゅうごじ</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-6"></div>
+        </div>
+
+        <div class="question">
+            <p>７ Thứ ３ tuần sau</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q7-1" name="q7">
+                    <label for="q7-1">1. らいしゅう のかようび</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q7-2" name="q7">
+                    <label for="q7-2">2. せんしゅう のかようび</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q7-3" name="q7">
+                    <label for="q7-3">3. こんしゅう のかようび</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-7"></div>
+        </div>
+
+        <div class="question">
+            <p>８ ０８０－１２３４－５６７８</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q8-1" name="q8">
+                    <label for="q8-1">1. ぜろはちぜろ いちにさんよん ごろくななはち</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q8-2" name="q8">
+                    <label for="q8-2">2. れいはちれい いちにさんよん ごろくななはち</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q8-3" name="q8">
+                    <label for="q8-3">3. まるはちまる いちにさんよん ごろくななはち</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-8"></div>
+        </div>
+    </div>
+
+    <div class="question-section" id="section-3">
+        <h2><i class="fas fa-question-circle"></i> 問題III．（　）に はいる いちばん よいものを えらんでください。（2*5=10）</h2>
+        <div class="vietnamese">Hãy chọn đáp án đúng nhất trong （　）</div>
+
+        <div class="example">
+            <p>れい） いち ー（　　　）ー さん</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="example2-1" name="example2">
+                    <label for="example2-1">1. よん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example2-2" name="example2" checked>
+                    <label for="example2-2">2. に</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example2-3" name="example2">
+                    <label for="example2-3">3. ご</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>９ げつようび ー（　　　） ー すいようび</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q9-1" name="q9">
+                    <label for="q9-1">1. もくようび</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q9-2" name="q9">
+                    <label for="q9-2">2. かようび</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q9-3" name="q9">
+                    <label for="q9-3">3. どようび</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-9"></div>
+        </div>
+
+        <div class="question">
+            <p>１０ ついたち ー（　　　） ー みっか</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q10-1" name="q10">
+                    <label for="q10-1">1. ふつか</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q10-2" name="q10">
+                    <label for="q10-2">2. いつか</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q10-3" name="q10">
+                    <label for="q10-3">3. むいか</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-10"></div>
+        </div>
+
+        <div class="question">
+            <p>１１ （　　　）ー きのう ー きょう</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q11-1" name="q11">
+                    <label for="q11-1">1. おととい</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q11-2" name="q11">
+                    <label for="q11-2">2. あした</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q11-3" name="q11">
+                    <label for="q11-3">3. あさって</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-11"></div>
+        </div>
+
+        <div class="question">
+            <p>１２ いち ー に ー （　　　） ー よん</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q12-1" name="q12">
+                    <label for="q12-1">1. ろく</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q12-2" name="q12">
+                    <label for="q12-2">2. さん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q12-3" name="q12">
+                    <label for="q12-3">3. ご</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-12"></div>
+        </div>
+
+        <div class="question">
+            <p>１３ せん ー （　　　）ー さんぜん</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q13-1" name="q13">
+                    <label for="q13-1">1. にせん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q13-2" name="q13">
+                    <label for="q13-2">2. よんせん</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q13-3" name="q13">
+                    <label for="q13-3">3. ごせん</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-13"></div>
+        </div>
+    </div>
+
+    <div class="question-section" id="section-4">
+        <h2><i class="fas fa-question-circle"></i> 問題IV. （　）に はいる いちばん よいものを えらんでください。（2*2=4）</h2>
+        <div class="vietnamese">Hãy chọn đáp án đúng nhất trong （　）</div>
+
+        <div class="example">
+            <p>れい）わたし（　　　）がくせいです。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="example3-1" name="example3">
+                    <label for="example3-1">1. が</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example3-2" name="example3">
+                    <label for="example3-2">2. を</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example3-3" name="example3" checked>
+                    <label for="example3-3">3. は</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>１４ これ（　　　）ほんです。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q14-1" name="q14">
+                    <label for="q14-1">1. は</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q14-2" name="q14">
+                    <label for="q14-2">2. が</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q14-3" name="q14">
+                    <label for="q14-3">3. を</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-14"></div>
+        </div>
+
+        <div class="question">
+            <p>１５ ここ（　　　）ITMセンターです。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q15-1" name="q15">
+                    <label for="q15-1">1. は</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q15-2" name="q15">
+                    <label for="q15-2">2. が</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q15-3" name="q15">
+                    <label for="q15-3">3. を</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-15"></div>
+        </div>
+    </div>
+
+    <div class="question-section" id="section-5">
+        <h2><i class="fas fa-question-circle"></i> 問題V．れいのように、かいてください。（4*4=16）</h2>
+        <div class="vietnamese">Hãy sắp xếp lại câu theo như câu ví dụ.</div>
+
+        <div class="example">
+            <p>れい）これは（わたし／ほん／の）です。</p>
+            <p><u>これは わたしの ほんです</u></p>
+        </div>
+
+        <div class="question">
+            <p>２８ (ほん／わたし／の／これ／は）です。</p>
+            <textarea style="height: 60px;"></textarea>
+            <div class="text-answer-feedback" id="feedback-28"></div>
+        </div>
+
+        <div class="question">
+            <p>２９ (せんせい／てちょう／の／ですか／これ／は）。</p>
+            <textarea style="height: 60px;"></textarea>
+            <div class="text-answer-feedback" id="feedback-29"></div>
+        </div>
+
+        <div class="question">
+            <p>３０ (じしょ／あれ／じゃありません／は）。</p>
+            <textarea style="height: 60px;"></textarea>
+            <div class="text-answer-feedback" id="feedback-30"></div>
+        </div>
+
+        <div class="question">
+            <p>３１ (いま／なんじ／ですか）。</p>
+            <textarea style="height: 60px;"></textarea>
+            <div class="text-answer-feedback" id="feedback-31"></div>
+        </div>
+    </div>
+
+    <div class="question-section" id="section-6">
+        <h2><i class="fas fa-question-circle"></i> 問題VI．（　）に はいる いちばん よいものを えらんでください。（3*5=15）</h2>
+        <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong (      ).</div>
+
+        <div style="border: 1px solid #E0E4EA; padding: 12px; border-radius: 5px; margin-bottom: 15px;">
+            <p>A：おはようございます。</p>
+            <p>B：おはようございます。</p>
+            <p>A：（ ３２ ）はミンさんですか。</p>
+            <p>B：はい、わたし（ ３３ ）ミンです。</p>
+            <p>A：わたしは山田です。どうぞよろしく。</p>
+            <p>B：（ ３４ ）よろしくおねがいします。</p>
+            <p>A：ミンさん（ ３５ ）ベトナムじんですか。</p>
+            <p>B：はい、ベトナムじんです。山田さんは（ ３６ ）ですか。</p>
+            <p>A：にほんじんです。</p>
+        </div>
+
+        <div class="question">
+            <p>３２</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q32-1" name="q32">
+                    <label for="q32-1">1. あなた</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q32-2" name="q32">
+                    <label for="q32-2">2. わたし</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q32-3" name="q32">
+                    <label for="q32-3">3. あのひと</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-32"></div>
+        </div>
+
+        <div class="question">
+            <p>３３</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q33-1" name="q33">
+                    <label for="q33-1">1. は</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q33-2" name="q33">
+                    <label for="q33-2">2. が</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q33-3" name="q33">
+                    <label for="q33-3">3. を</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-33"></div>
+        </div>
+
+        <div class="question">
+            <p>３４</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q34-1" name="q34">
+                    <label for="q34-1">1. はい</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q34-2" name="q34">
+                    <label for="q34-2">2. どうぞ</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q34-3" name="q34">
+                    <label for="q34-3">3. こちらこそ</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-34"></div>
+        </div>
+
+        <div class="question">
+            <p>３５</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q35-1" name="q35">
+                    <label for="q35-1">1. は</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q35-2" name="q35">
+                    <label for="q35-2">2. も</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q35-3" name="q35">
+                    <label for="q35-3">3. が</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-35"></div>
+        </div>
+
+        <div class="question">
+            <p>３６</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q36-1" name="q36">
+                    <label for="q36-1">1. どなた</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q36-2" name="q36">
+                    <label for="q36-2">2. なに</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q36-3" name="q36">
+                    <label for="q36-3">3. なん</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-36"></div>
+        </div>
+    </div>
+
+    <div class="question-section" id="section-7">
+        <h2><i class="fas fa-question-circle"></i> 問題VII．Xのこたえとして いちばん よいものを えらんでください。（3*5=15）</h2>
+        <div class="vietnamese">Hãy chọn đáp án đúng nhất đối với câu trả lời của X</div>
+
+        <div class="example">
+            <p>れい） X: おはようございます</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="example4-1" name="example4">
+                    <label for="example4-1">1. こんにちは</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example4-2" name="example4" checked>
+                    <label for="example4-2">2. おはようございます</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="example4-3" name="example4">
+                    <label for="example4-3">3. こんばんは</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>３７ X: はじめまして。わたしはタンです。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q37-1" name="q37">
+                    <label for="q37-1">1. どうもありがとうございます。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q37-2" name="q37">
+                    <label for="q37-2">2. はじめまして。わたしはリンです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q37-3" name="q37">
+                    <label for="q37-3">3. さようなら。</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-37"></div>
+        </div>
+
+        <div class="question">
+            <p>３８ X: これは なんですか。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q38-1" name="q38">
+                    <label for="q38-1">1. それは ほんです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q38-2" name="q38">
+                    <label for="q38-2">2. これはミラーさんです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q38-3" name="q38">
+                    <label for="q38-3">3. ここはきょうしつです。</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-38"></div>
+        </div>
+
+        <div class="question">
+            <p>３９ X: いま なんじですか。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q39-1" name="q39">
+                    <label for="q39-1">1. じゅうじはんです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q39-2" name="q39">
+                    <label for="q39-2">2. じゅうにがつです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q39-3" name="q39">
+                    <label for="q39-3">3. どようびです。</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-39"></div>
+        </div>
+
+        <div class="question">
+            <p>４０ X: あなたの かばんは どれですか。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q40-1" name="q40">
+                    <label for="q40-1">1. あれは わたしの かばんです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q40-2" name="q40">
+                    <label for="q40-2">2. これは わたしの かばんです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q40-3" name="q40">
+                    <label for="q40-3">3. それは わたしの かばんです。</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-40"></div>
+        </div>
+
+        <div class="question">
+            <p>４１ X: あのかたは どなたですか。</p>
+            <div class="options">
+                <div class="option">
+                    <input type="radio" id="q41-1" name="q41">
+                    <label for="q41-1">1. わたしの せんせいです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q41-2" name="q41">
+                    <label for="q41-2">2. わたしは がくせいです。</label>
+                </div>
+                <div class="option">
+                    <input type="radio" id="q41-3" name="q41">
+                    <label for="q41-3">3. あのひとは にほんじんです。</label>
+                </div>
+            </div>
+            <div class="answer-feedback" id="feedback-41"></div>
+        </div>
+    </div>
+
+    <button id="submit-test" type="button" style="display: none;">
+        <span class="submit-text">
+            テストを提出する<br>( Nộp bài )
+        </span>
+    </button>
+
+    <!-- Result Section -->
+    <div class="result-section" id="results">
+        <h2><i class="fas fa-chart-bar"></i> 採点結果 (Kết quả)</h2>
+        <div id="score-display"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Tài liệu kiểm tra | Thiết kế bởi Thuận</p>
+    </footer>
+
+    <script>
+        // Answer key for radio button questions
+        const answerKey = {
+            'q1': 'q1-1', // けしゴム
+            'q2': 'q2-1', // とけい
+            'q3': 'q3-1', // きょうしつ
+            'q4': 'q4-3', // いちじはん
+            'q5': 'q5-1', // はちじ よんじゅうごふん
+            'q6': 'q6-1', // にがつ じゅうごにち
+            'q7': 'q7-1', // らいしゅう のかようび
+            'q8': 'q8-3', // まるはちまる いちにさんよん ごろくななはち
+            'q9': 'q9-2', // かようび
+            'q10': 'q10-1', // ふつか
+            'q11': 'q11-1', // おととい
+            'q12': 'q12-2', // さん
+            'q13': 'q13-1', // にせん
+            'q14': 'q14-1', // は
+            'q15': 'q15-1', // は
+            'q32': 'q32-1', // あなた
+            'q33': 'q33-1', // は
+            'q34': 'q34-3', // こちらこそ
+            'q35': 'q35-1', // は
+            'q36': 'q36-3', // なん
+            'q37': 'q37-2', // はじめまして。わたしはリンです。
+            'q38': 'q38-1', // それは ほんです。
+            'q39': 'q39-1', // じゅうじはんです。
+            'q40': 'q40-3', // それは わたしの かばんです。
+            'q41': 'q41-1' // わたしの せんせいです。
+        };
+
+        // Answer key for text questions (問題 V)
+        const textAnswerKey = {
+            28: 'これは わたしの ほんです。',
+            29: 'これは せんせいの てちょうですか。',
+            30: 'あれは じしょじゃありません。',
+            31: 'いま なんじですか。'
+        };
+
+        // Points per section
+        const sectionPoints = {
+            1: 6,  // 3 questions x 2 points
+            2: 10, // 5 questions x 2 points
+            3: 10, // 5 questions x 2 points
+            4: 4,  // 2 questions x 2 points
+            5: 16, // 4 questions x 4 points
+            6: 15, // 5 questions x 3 points
+            7: 15  // 5 questions x 3 points
+        };
+
+        // Hàm chuẩn hóa chuỗi
+        function normalizeString(str) {
+            return str
+                .normalize('NFKC')
+                .trim()
+                .replace(/[\s\u3000]+/g, '')
+                .replace(/[。！？｡!?.、，]/g, '')
+                .toLowerCase();
+        }
+
+        // Hàm hiển thị đáp án đúng/sai cho câu trắc nghiệm
+        function showRadioAnswerFeedback(questionNumber) {
+            const questionName = `q${questionNumber}`;
+            const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+            const correctOption = document.getElementById(answerKey[questionName]);
+            const options = document.querySelectorAll(`input[name="${questionName}"]`);
+            const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
+
+            options.forEach(option => {
+                const label = option.nextElementSibling;
+                if (option.id === answerKey[questionName]) {
+                    label.classList.add('correct-answer');
+                    option.classList.add('correct-answer');
+                } else if (option === selectedOption && option.id !== answerKey[questionName]) {
+                    label.classList.add('wrong-answer');
+                    option.classList.add('wrong-answer');
+                }
+            });
+
+            if (selectedOption) {
+                if (selectedOption.id === answerKey[questionName]) {
+                    feedbackDiv.textContent = 'Đúng!';
+                    feedbackDiv.className = 'answer-feedback correct';
+                } else {
+                    feedbackDiv.textContent = `Đáp án đúng: ${correctOption.nextElementSibling.textContent}`;
+                    feedbackDiv.className = 'answer-feedback wrong';
+                }
+            } else {
+                feedbackDiv.textContent = `Đáp án đúng: ${correctOption.nextElementSibling.textContent}`;
+                feedbackDiv.className = 'answer-feedback wrong';
+            }
+        }
+
+        // Hàm hiển thị đáp án đúng/sai cho câu viết
+        function showTextAnswerFeedback() {
+            const textAnswers = document.querySelectorAll('textarea');
+            textAnswers.forEach((textarea, index) => {
+                const questionNumber = 28 + index;
+                const userAnswer = normalizeString(textarea.value);
+                const correctAnswer = normalizeString(textAnswerKey[questionNumber]);
+                const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
+
+                if (userAnswer === correctAnswer) {
+                    feedbackDiv.textContent = 'Đúng!';
+                    feedbackDiv.classList.remove('text-answer-feedback');
+                    feedbackDiv.classList.add('text-answer-feedback', 'correct');
+                } else {
+                    feedbackDiv.textContent = `Đáp án đúng: ${textAnswerKey[questionNumber]}`;
+                    feedbackDiv.classList.remove('correct');
+                    feedbackDiv.classList.add('text-answer-feedback');
+                }
+            });
+        }
+
+        // Function to calculate scores for radio button sections
+        function calculateRadioSectionScore(startQuestion, endQuestion, pointsPerQuestion) {
+            let score = 0;
+            for (let i = startQuestion; i <= endQuestion; i++) {
+                const questionName = `q${i}`;
+                const selectedOption = document.querySelector(`input[name="${questionName}"]:checked`);
+                if (selectedOption && selectedOption.id === answerKey[questionName]) {
+                    score += pointsPerQuestion;
+                }
+                showRadioAnswerFeedback(i);
+            }
+            return score;
+        }
+
+        // Function to grade text inputs for section 5
+        function calculateTextSectionScore() {
+            let score = 0;
+            const textAnswers = document.querySelectorAll('textarea');
+            
+            textAnswers.forEach((textarea, index) => {
+                const questionNumber = 28 + index;
+                const userAnswer = normalizeString(textarea.value);
+                const correctAnswer = normalizeString(textAnswerKey[questionNumber]);
+                
+                if (userAnswer === correctAnswer) {
+                    score += 4;
+                }
+            });
+            
+            showTextAnswerFeedback();
+            return score;
+        }
+
+        // Function to save test result to localStorage
+        function saveTestResult(studentInfo, sectionScores, totalScore) {
+            const results = JSON.parse(localStorage.getItem('testResults') || '[]');
+            const timestamp = new Date().toISOString();
+            results.push({
+                timestamp,
+                studentInfo,
+                sectionScores,
+                totalScore
+            });
+            localStorage.setItem('testResults', JSON.stringify(results));
+        }
+
+        // Function to determine grade based on percentage
+        function getGrade(percentage) {
+            if (percentage >= 85) return { letter: 'A', symbol: '●' };
+            if (percentage >= 70) return { letter: 'B', symbol: '○' };
+            if (percentage >= 60) return { letter: 'C', symbol: '◯' };
+            if (percentage >= 55) return { letter: 'D', symbol: '△' };
+            return { letter: 'F', symbol: '×' };
+        }
+
+        // Function to export all results to Excel
+        function exportToExcel(studentInfo, sectionScores, totalScore) {
+            const workbook = XLSX.utils.book_new();
+            const totalMaxScore = 76;
+
+            const percentage = (totalScore / totalMaxScore) * 100;
+            const grade = getGrade(percentage);
+
+            const currentWorksheetData = [
+                ['Tên (名前)', studentInfo.name],
+                ['Lớp (クラス)', studentInfo.class],
+                ['Ngày (日付)', studentInfo.date],
+                ['Thời gian', new Date().toLocaleString('vi-VN')],
+                [],
+                ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', 'Xếp loại'],
+                ['問題Ⅰ', sectionPoints[1], sectionScores[1], `${(sectionScores[1] / sectionPoints[1] * 100).toFixed(1)}%`, getGrade((sectionScores[1] / sectionPoints[1] * 100)).symbol],
+                ['問題II', sectionPoints[2], sectionScores[2], `${(sectionScores[2] / sectionPoints[2] * 100).toFixed(1)}%`, getGrade((sectionScores[2] / sectionPoints[2] * 100)).symbol],
+                ['問題III', sectionPoints[3], sectionScores[3], `${(sectionScores[3] / sectionPoints[3] * 100).toFixed(1)}%`, getGrade((sectionScores[3] / sectionPoints[3] * 100)).symbol],
+                ['問題IV', sectionPoints[4], sectionScores[4], `${(sectionScores[4] / sectionPoints[4] * 100).toFixed(1)}%`, getGrade((sectionScores[4] / sectionPoints[4] * 100)).symbol],
+                ['問題V', sectionPoints[5], sectionScores[5], `${(sectionScores[5] / sectionPoints[5] * 100).toFixed(1)}%`, getGrade((sectionScores[5] / sectionPoints[5] * 100)).symbol],
+                ['問題VI', sectionPoints[6], sectionScores[6], `${(sectionScores[6] / sectionPoints[6] * 100).toFixed(1)}%`, getGrade((sectionScores[6] / sectionPoints[6] * 100)).symbol],
+                ['問題VII', sectionPoints[7], section secondedScores[7], `${(sectionScores[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
+                ['Tổng (合計)', totalMaxScore, totalScore, `${percentage.toFixed(1)}%`, grade.symbol]
+            ];
+            const currentWorksheet = XLSX.utils.aoa_to_sheet(currentWorksheetData);
+            XLSX.utils.book_append_sheet(workbook, currentWorksheet, 'Kết quả hiện tại');
+
+            const results = JSON.parse(localStorage.getItem('testResults') || '[]');
+            const allResultsData = [
+                ['Thời gian', 'Tên (名前)', 'Lớp (クラス)', 'Ngày (日付)', '問題Ⅰ', '問題II', '問題III', '問題IV', '問題V', '問題VI', '問題VII', 'Điểm đạt được (得点)', 'Điểm tối đa (合計)', 'Tỉ lệ (得点率)', 'Đánh giá xếp loại']
+            ];
+            results.forEach(result => {
+                const percentage = (result.totalScore / totalMaxScore) * 100;
+                const grade = getGrade(percentage);
+                allResultsData.push([
+                    new Date(result.timestamp).toLocaleString('vi-VN'),
+                    result.studentInfo.name,
+                    result.studentInfo.class,
+                    result.studentInfo.date,
+                    result.sectionScores[1],
+                    result.sectionScores[2],
+                    result.sectionScores[3],
+                    result.sectionScores[4],
+                    result.sectionScores[5],
+                    result.sectionScores[6],
+                    result.sectionScores[7],
+                    result.totalScore,
+                    totalMaxScore,
+                    `${percentage.toFixed(1)}%`,
+                    grade.symbol
+                ]);
+            });
+            const allResultsWorksheet = XLSX.utils.aoa_to_sheet(allResultsData);
+            XLSX.utils.book_append_sheet(workbook, allResultsWorksheet, 'Tất cả kết quả');
+
+            XLSX.writeFile(workbook, `Ket_qua_${studentInfo.name || 'Unknown'}_${studentInfo.date}.xlsx`);
+        }
+
+        // Timer interval
+        let timerInterval;
+
+        // Hàm bắt đầu bài kiểm tra
+        function startTest() {
+            // Validate student info
+            const name = document.getElementById('name').value.trim();
+            const className = document.getElementById('class').value.trim();
+            const date = document.getElementById('date').value;
+            const messageDiv = document.getElementById('message');
+
+            if (!name || !className || !date) {
+                messageDiv.textContent = 'Vui lòng điền đầy đủ thông tin!';
+                return;
+            }
+
+            // Hide start button and show question sections
+            document.getElementById('start-test').style.display = 'none';
+            document.querySelectorAll('.question-section').forEach(section => {
+                section.style.display = 'block';
+            });
+            document.getElementById('submit-test').style.display = 'flex';
+            messageDiv.textContent = '';
+
+            // Start timer
+            let timeLeft = 40 * 60; // 40 minutes in seconds
+            const timerDisplay = document.getElementById('timer');
+            timerDisplay.style.display = 'flex';
+
+            timerInterval = setInterval(() => {
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerDisplay.textContent = `Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 60) {
+                    timerDisplay.classList.add('warning');
+                }
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitTest();
+                }
+
+                timeLeft--;
+            }, 1000);
+        }
+
+        // Hàm xử lý nộp bài
+        function submitTest() {
+            // Stop the timer
+            clearInterval(timerInterval);
+            document.getElementById('timer').style.display = 'none';
+
+            // Collect student info
+            const studentInfo = {
+                name: document.getElementById('name').value.trim(),
+                class: document.getElementById('class').value.trim(),
+                date: document.getElementById('date').value
+            };
+
+            // Validate student info
+            if (!studentInfo.name || !studentInfo.class || !studentInfo.date) {
+                document.getElementById('message').textContent = 'Vui lòng điền đầy đủ thông tin!';
+                return;
+            }
+
+            // Calculate scores for each section
+            const sectionScores = {
+                1: calculateRadioSectionScore(1, 3, 2),   // 問題 I: 6 points
+                2: calculateRadioSectionScore(4, 8, 2),   // 問題 II: 10 points
+                3: calculateRadioSectionScore(9, 13, 2),  // 問題 III: 10 points
+                4: calculateRadioSectionScore(14, 15, 2), // 問題 IV: 4 points
+                5: calculateTextSectionScore(),           // 問題 V: 16 points
+                6: calculateRadioSectionScore(32, 36, 3), // 問題 VI: 15 points
+                7: calculateRadioSectionScore(37, 41, 3)  // 問題 VII: 15 points
+            };
+
+            // Calculate total score
+            const totalScore = Object.values(sectionScores).reduce((sum, score) => sum + score, 0);
+            const totalMaxScore = 76;
+            const percentage = (totalScore / totalMaxScore) * 100;
+            const grade = getGrade(percentage);
+
+            // Display results
+            const resultSection = document.getElementById('results');
+            resultSection.style.display = 'block';
+            document.getElementById('score-display').innerHTML = `
+                <p><strong>Tổng điểm:</strong> ${totalScore}/${totalMaxScore} (${percentage.toFixed(1)}%)</p>
+                <p><strong>Xếp loại:</strong> ${grade.letter} (${grade.symbol})</p>
+                <table class="result-table">
+                    <tr>
+                        <th>Phần</th>
+                        <th>Điểm tối đa</th>
+                        <th>Điểm đạt được</th>
+                        <th>Tỉ lệ</th>
+                        <th>Xếp loại</th>
+                    </tr>
+                    ${Object.keys(sectionScores).map(section => `
+                        <tr>
+                            <td>問題 ${section}</td>
+                            <td>${sectionPoints[section]}</td>
+                            <td>${sectionScores[section]}</td>
+                            <td>${(sectionScores[section] / sectionPoints[section] * 100).toFixed(1)}%</td>
+                            <td>${getGrade((sectionScores[section] / sectionPoints[section] * 100)).symbol}</td>
+                        </tr>
+                    `).join('')}
+                    <tr class="total">
+                        <td>Tổng</td>
+                        <td>${totalMaxScore}</td>
+                        <td>${totalScore}</td>
+                        <td>${percentage.toFixed(1)}%</td>
+                        <td>${grade.symbol}</td>
+                    </tr>
+                </table>
+            `;
+
+            // Save and export results
+            saveTestResult(studentInfo, sectionScores, totalScore);
+            exportToExcel(studentInfo, sectionScores, totalScore);
+
+            // Disable inputs
+            document.querySelectorAll('input, textarea').forEach(element => element.disabled = true);
+            document.getElementById('submit-test').style.display = 'none';
+        }
+
+        // Attach event listeners
+        document.getElementById('start-test').addEventListener('click', startTest);
+        document.getElementById('submit-test').addEventListener('click', submitTest);
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>模擬テスト 第1～3課</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- XLSX library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            line-height: 1.6;
+            padding: 10px;
+            max-width: 100%;
+            overflow-x: hidden;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            max-width: 100%;
+        }
+
+        .header h1 {
+            font-size: 1.5em;
+            color: #4A90E2;
+            margin-bottom: 8px;
+            overflow-wrap: break-word;
+        }
+
+        .header h2 {
+            font-size: 1.2em;
+            color: #333;
+            overflow-wrap: break-word;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            color: #6B7280;
+        }
+
+        /* Student Info */
+        .student-info {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            max-width: 100%;
+        }
+
+        .student-info div {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .student-info label {
+            font-weight: 500;
+            color: #4A90E2;
+            margin-bottom: 4px;
+            font-size: 0.9em;
+            overflow-wrap: break-word;
+        }
+
+        .student-info input {
+            padding: 8px;
+            border: 1px solid #D1D5DB;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: border-color 0.2s;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        .student-info input:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+
+        /* Question Section */
+        .question-section {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            display: none;
+            max-width: 100%;
+        }
+
+        .question-section h2 {
+            background-color: #4A90E2;
+            color: #fff;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            overflow-wrap: break-word;
+        }
+
+        .question {
+            margin-bottom: 15px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #E0E4EA;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow-wrap: break-word;
+            padding: 4px 0;
+        }
+
+        .option input {
+            accent-color: #4A90E2;
+        }
+
+        .option label {
+            font-size: 0.9em;
+            color: #333;
+            overflow-wrap: break-word;
+            max-width: 100%;
+        }
+
+        .example {
+            background-color: #F9FAFB;
+            padding: 12px;
+            border-left: 4px solid #4A90E2;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            max-width: 120px;
+            height: 100px;
+            border: 1px dashed #D1D5DB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 8px 0;
+            background-color: #F9FAFB;
+            font-size: 0.8em;
+            overflow: hidden;
+        }
+
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            loading: lazy;
+        }
+
+        /* Buttons */
+        button {
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.3s, transform 0.1s;
+            margin: 8px 5px 0 0;
+            min-height: 40px;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        button:hover {
+            background-color: #357ABD;
+            transform: translateY(-2px);
+        }
+
+        button.reset {
+            background-color: #EF4444;
+        }
+
+        button.reset:hover {
+            background-color: #DC2626;
+        }
+
+        /* Submit Button Specific Styling */
+        .submit-text {
+            display: inline-block;
+            text-align: center;
+            line-height: 1.4;
+            vertical-align: middle;
+        }
+
+        button#submit-test {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 15px;
+            white-space: normal;
+        }
+
+        /* Vietnamese text */
+        .vietnamese {
+            font-family: 'Roboto', sans-serif;
+            font-style: italic;
+            color: #6B7280;
+            margin-bottom: 8px;
+            font-size: 0.85em;
+            overflow-wrap: break-word;
+        }
+
+        /* Result Section */
+        .result-section {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 15px;
+            display: none;
+            max-width: 100%;
+        }
+
+        .result-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+        }
+
+        .result-table th, .result-table td {
+            border: 1px solid #E0E4EA;
+            padding: 8px;
+            text-align: center;
+            font-size: 0.85em;
+            overflow-wrap: break-word;
+        }
+
+        .result-table th {
+            background-color: #4A90E2;
+            color: #fff;
+        }
+
+        .result-table tr:nth-child(even) {
+            background-color: #F9FAFB;
+        }
+
+        .result-table tr.total {
+            font-weight: bold;
+            background-color: #E5E7EB;
+        }
+
+        /* Textarea */
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #D1D5DB;
+            border-radius: 4px;
+            resize: vertical;
+            transition: border-color 0.2s;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        textarea:focus {
+            border-color: #4A90E2;
+            outline: none;
+        }
+
         /* Feedback */
         .answer-feedback, .text-answer-feedback {
             margin-top: 6px;
