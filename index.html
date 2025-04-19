@@ -503,7 +503,7 @@
         <p>（40分）</p>
     </div>
 
-    <!-- Student Info -->
+    <!-- Student Info (Chỉ xuất hiện một lần) -->
     <div class="student-info">
         <div>
             <label for="name">名前（なまえ）:</label>
@@ -1346,7 +1346,7 @@
                 ['問題IV', sectionPoints[4], sectionScores[4], `${(sectionScores[4] / sectionPoints[4] * 100).toFixed(1)}%`, getGrade((sectionScores[4] / sectionPoints[4] * 100)).symbol],
                 ['問題V', sectionPoints[5], sectionScores[5], `${(sectionScores[5] / sectionPoints[5] * 100).toFixed(1)}%`, getGrade((sectionScores[5] / sectionPoints[5] * 100)).symbol],
                 ['問題VI', sectionPoints[6], sectionScores[6], `${(sectionScores[6] / sectionPoints[6] * 100).toFixed(1)}%`, getGrade((sectionScores[6] / sectionPoints[6] * 100)).symbol],
-                ['問題VII', sectionPoints[7], section secondedScores[7], `${(sectionScores[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
+                ['問題VII', sectionPoints[7], sectionScores[7], `${(sectionScores[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
                 ['Tổng (合計)', totalMaxScore, totalScore, `${percentage.toFixed(1)}%`, grade.symbol]
             ];
             const currentWorksheet = XLSX.utils.aoa_to_sheet(currentWorksheetData);
