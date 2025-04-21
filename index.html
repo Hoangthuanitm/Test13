@@ -11,77 +11,73 @@
     <style>
         body {
             font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-            width: 100%;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 10px;
+            padding: 20px;
             background-color: #F5F7FA;
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 16px;
+            line-height: 1.6;
             color: #333;
-            box-sizing: border-box;
         }
         .header {
             text-align: center;
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 30px;
+            padding: 15px;
             background-color: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
         .header h1 {
-            font-size: 1.5em;
+            font-size: 1.8em;
             margin: 0;
             color: #4A90E2;
         }
         .header h2 {
-            font-size: 1.2em;
-            margin: 8px 0;
+            font-size: 1.4em;
+            margin: 10px 0;
             color: #333;
         }
         .student-info {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 15px;
+            flex-direction: column; /* Sắp xếp theo cột dọc */
+            margin-bottom: 20px;
             border: 1px solid #E0E4EA;
-            padding: 10px;
-            border-radius: 8px;
+            padding: 15px;
+            border-radius: 10px;
             background-color: #FFFFFF;
         }
         .student-info div {
-            flex: 1 1 100%;
-            margin: 5px 0;
+            margin: 10px 0; /* Khoảng cách giữa các trường */
         }
         .student-info label {
             font-weight: 500;
             color: #4A90E2;
-            font-size: 0.9em;
+            display: block; /* Đảm bảo nhãn nằm trên ô nhập liệu */
         }
         .student-info input {
-            width: 100%;
-            padding: 10px;
+            width: 100%; /* Chiếm toàn bộ chiều rộng của phần tử cha */
+            padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 6px;
             font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
             transition: border-color 0.2s;
-            box-sizing: border-box;
+            box-sizing: border-box; /* Đảm bảo padding không làm tăng kích thước tổng */
         }
         .student-info input:focus {
             border-color: #4A90E2;
             outline: none;
         }
         .question-section {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
             background-color: #FFFFFF;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            display: none; /* Ẩn các phần câu hỏi ban đầu */
         }
         .question {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
             border-bottom: 1px solid #E0E4EA;
         }
         .options {
@@ -89,38 +85,35 @@
             flex-direction: column;
         }
         .option {
-            margin: 6px 0;
+            margin: 8px 0;
             display: flex;
             align-items: center;
         }
         .option input {
-            margin-right: 10px;
+            margin-right: 12px;
             accent-color: #4A90E2;
-            width: 20px;
-            height: 20px;
         }
         .option label {
-            font-size: 0.95em;
+            font-size: 1em;
             color: #333;
         }
         .example {
             background-color: #F9FAFB;
-            padding: 10px;
-            border-left: 3px solid #4A90E2;
-            margin-bottom: 15px;
+            padding: 15px;
+            border-left: 4px solid #4A90E2;
+            margin-bottom: 20px;
             border-radius: 6px;
         }
         .image-placeholder {
-            width: 100%;
-            max-width: 120px;
-            height: 100px;
+            width: 150px;
+            height: 120px;
             border: 1px dashed #D1D5DB;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 8px 0;
+            margin: 10px 0;
             background-color: #F9FAFB;
-            font-size: 0.8em;
+            font-size: 0.9em;
             overflow: hidden;
         }
         .image-placeholder img {
@@ -131,25 +124,23 @@
         h2 {
             background-color: #4A90E2;
             color: #FFFFFF;
-            padding: 10px;
-            border-radius: 6px;
-            font-size: 1.1em;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 1.3em;
             margin-top: 0;
         }
         button {
             background-color: #4A90E2;
             color: #FFFFFF;
             border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
+            padding: 12px 24px;
+            border-radius: 8px;
             cursor: pointer;
-            margin-top: 15px;
-            font-size: 0.95em;
+            margin-top: 20px;
+            font-size: 1em;
             font-family: 'Roboto', sans-serif;
             transition: background-color 0.2s, transform 0.1s;
-            margin-right: 8px;
-            min-height: 44px;
-            touch-action: manipulation;
+            margin-right: 10px;
         }
         button:hover {
             background-color: #357ABD;
@@ -165,45 +156,43 @@
             font-family: 'Roboto', sans-serif;
             font-style: italic;
             color: #6B7280;
-            margin-bottom: 10px;
-            font-size: 0.9em;
+            margin-bottom: 15px;
+            font-size: 0.95em;
         }
         .result-section {
-            margin-top: 15px;
-            padding: 15px;
+            margin-top: 30px;
+            padding: 20px;
             background-color: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
             display: none;
         }
         .error-message {
             color: #EF4444;
-            margin-top: 10px;
-            font-size: 0.9em;
+            margin-top: 15px;
+            font-size: 0.95em;
         }
         .student-details {
-            margin-bottom: 15px;
-            padding: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
             background-color: #F9FAFB;
-            border-radius: 6px;
+            border-radius: 8px;
         }
         .student-details p {
-            margin: 6px 0;
-            font-size: 0.9em;
+            margin: 8px 0;
+            font-size: 1em;
             color: #333;
         }
         .result-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
-            overflow-x: auto;
-            display: block;
+            margin-top: 15px;
         }
         .result-table th, .result-table td {
             border: 1px solid #E0E4EA;
-            padding: 8px;
+            padding: 12px;
             text-align: center;
-            font-size: 0.85em;
+            font-size: 0.95em;
         }
         .result-table th {
             background-color: #4A90E2;
@@ -219,13 +208,11 @@
         }
         textarea {
             font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-            font-size: 0.95em;
+            font-size: 1em;
             padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 6px;
             width: 100%;
-            min-height: 60px;
-            box-sizing: border-box;
             transition: border-color 0.2s;
         }
         textarea:focus {
@@ -234,109 +221,51 @@
         }
         footer {
             text-align: center;
-            margin-top: 20px;
-            padding: 15px 0;
+            margin-top: 40px;
+            padding: 20px 0;
             border-top: 1px solid #E0E4EA;
             color: #6B7280;
-            font-size: 0.85em;
+            font-size: 0.9em;
             font-family: 'Roboto', sans-serif;
         }
+        /* CSS cho hiển thị đáp án đúng/sai */
         .correct-answer {
-            color: #4A90E2;
+            color: #4A90E2; /* Xanh dương cho đáp án đúng */
         }
         .wrong-answer {
-            color: #EF4444;
+            color: #EF4444; /* Đỏ cho đáp án sai */
         }
         .answer-feedback {
-            margin-top: 6px;
-            font-size: 0.85em;
-            color: #4A90E2;
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #4A90E2; /* Xanh dương cho phản hồi đúng */
         }
         .answer-feedback.wrong {
-            color: #EF4444;
+            color: #EF4444; /* Đỏ cho phản hồi sai */
         }
         .text-answer-feedback {
-            margin-top: 6px;
-            font-size: 0.85em;
-            color: #EF4444;
+            margin-top: 8px;
+            font-size: 0.9em;
+            color: #EF4444; /* Đỏ cho phản hồi câu viết sai */
         }
         .text-answer-feedback.correct {
-            color: #4A90E2;
+            color: #4A90E2; /* Xanh dương cho câu viết đúng */
         }
+        /* CSS cho bộ đếm thời gian */
         .timer {
-            position: sticky;
-            top: 10px;
-            right: 10px;
+            position: fixed;
+            top: 20px;
+            right: 20px;
             background-color: #4A90E2;
             color: #FFFFFF;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 0.9em;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             z-index: 1000;
-            align-self: flex-end;
         }
         .timer.warning {
             background-color: #EF4444;
-        }
-        .timer.warning::before {
-            content: '⚠ ';
-        }
-
-        /* Media Queries cho thiết bị di động */
-        @media (max-width: 600px) {
-            body {
-                font-size: 0.95rem;
-                padding: 8px;
-            }
-            .header h1 {
-                font-size: 1.3em;
-            }
-            .header h2 {
-                font-size: 1.1em;
-            }
-            .student-info div {
-                margin: 4px 0;
-            }
-            .student-info input {
-                padding: 8px;
-                font-size: 0.95rem;
-            }
-            .question-section {
-                padding: 10px;
-                margin-bottom: 10px;
-            }
-            .question {
-                margin-bottom: 10px;
-            }
-            .option label {
-                font-size: 0.9em;
-            }
-            .image-placeholder {
-                max-width: 100px;
-                height: 80px;
-            }
-            h2 {
-                font-size: 1em;
-                padding: 8px;
-            }
-            button {
-                padding: 8px 16px;
-                font-size: 0.9em;
-                min-height: 40px;
-            }
-            .result-table th, .result-table td {
-                padding: 6px;
-                font-size: 0.8em;
-            }
-            textarea {
-                font-size: 0.9em;
-                min-height: 50px;
-            }
-            .timer {
-                font-size: 0.85em;
-                padding: 6px 12px;
-            }
         }
     </style>
 </head>
@@ -379,15 +308,15 @@
             </div>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="example-1" name="example" checked aria-label="ほん">
+                    <input type="radio" id="example-1" name="example" checked>
                     <label for="example-1">1. ほん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example-2" name="example" aria-label="ノート">
+                    <input type="radio" id="example-2" name="example">
                     <label for="example-2">2. ノート</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example-3" name="example" aria-label="つくえ">
+                    <input type="radio" id="example-3" name="example">
                     <label for="example-3">3. つくえ</label>
                 </div>
             </div>
@@ -400,15 +329,15 @@
             </div>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q1-1" name="q1" aria-label="けしゴム">
+                    <input type="radio" id="q1-1" name="q1">
                     <label for="q1-1">1. けしゴム</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q1-2" name="q1" aria-label="えんぴつ">
+                    <input type="radio" id="q1-2" name="q1">
                     <label for="q1-2">2. えんぴつ</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q1-3" name="q1" aria-label="ペン">
+                    <input type="radio" id="q1-3" name="q1">
                     <label for="q1-3">3. ペン</label>
                 </div>
             </div>
@@ -422,15 +351,15 @@
             </div>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q2-1" name="q2" aria-label="とけい">
+                    <input type="radio" id="q2-1" name="q2">
                     <label for="q2-1">1. とけい</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q2-2" name="q2" aria-label="でんわ">
+                    <input type="radio" id="q2-2" name="q2">
                     <label for="q2-2">2. でんわ</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q2-3" name="q2" aria-label="かばん">
+                    <input type="radio" id="q2-3" name="q2">
                     <label for="q2-3">3. かばん</label>
                 </div>
             </div>
@@ -444,15 +373,15 @@
             </div>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q3-1" name="q3" aria-label="きょうしつ">
+                    <input type="radio" id="q3-1" name="q3">
                     <label for="q3-1">1. きょうしつ</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q3-2" name="q3" aria-label="としょかん">
+                    <input type="radio" id="q3-2" name="q3">
                     <label for="q3-2">2. としょかん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q3-3" name="q3" aria-label="へや">
+                    <input type="radio" id="q3-3" name="q3">
                     <label for="q3-3">3. へや</label>
                 </div>
             </div>
@@ -468,15 +397,15 @@
             <p>４　１：３０</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q4-1" name="q4" aria-label="いちじ さんじゅっぶん">
+                    <input type="radio" id="q4-1" name="q4">
                     <label for="q4-1">1. いちじ さんじゅっぶん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q4-2" name="q4" aria-label="いちじ さんじっぶん">
+                    <input type="radio" id="q4-2" name="q4">
                     <label for="q4-2">2. いちじ さんじっぶん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q4-3" name="q4" aria-label="いちじはん">
+                    <input type="radio" id="q4-3" name="q4">
                     <label for="q4-3">3. いちじはん</label>
                 </div>
             </div>
@@ -487,15 +416,15 @@
             <p>５　８：４５</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q5-1" name="q5" aria-label="はちじ よんじゅうごふん">
+                    <input type="radio" id="q5-1" name="q5">
                     <label for="q5-1">1. はちじ よんじゅうごふん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q5-2" name="q5" aria-label="はちじ よじゅうごふん">
+                    <input type="radio" id="q5-2" name="q5">
                     <label for="q5-2">2. はちじ よじゅうごふん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q5-3" name="q5" aria-label="くじ よんじゅっぷん">
+                    <input type="radio" id="q5-3" name="q5">
                     <label for="q5-3">3. くじ よんじゅっぷん</label>
                 </div>
             </div>
@@ -506,15 +435,15 @@
             <p>６　２／１５</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q6-1" name="q6" aria-label="にがつ じゅうごにち">
+                    <input type="radio" id="q6-1" name="q6">
                     <label for="q6-1">1. にがつ じゅうごにち</label>
                 </div>
-                <div class machined="option">
-                    <input type="radio" id="q6-2" name="q6" aria-label="ふつか じゅうごにち">
+                <div class="option">
+                    <input type="radio" id="q6-2" name="q6">
                     <label for="q6-2">2. ふつか じゅうごにち</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q6-3" name="q6" aria-label="にがつ じゅうごにち">
+                    <input type="radio" id="q6-3" name="q6">
                     <label for="q6-3">3. にがつ じゅうごにち</label>
                 </div>
             </div>
@@ -525,15 +454,15 @@
             <p>７　Thứ ３ tuần sau</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q7-1" name="q7" aria-label="らいしゅう のかようび">
+                    <input type="radio" id="q7-1" name="q7">
                     <label for="q7-1">1. らいしゅう のかようび</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q7-2" name="q7" aria-label="せんしゅう のかようび">
+                    <input type="radio" id="q7-2" name="q7">
                     <label for="q7-2">2. せんしゅう のかようび</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q7-3" name="q7" aria-label="こんしゅう のかようび">
+                    <input type="radio" id="q7-3" name="q7">
                     <label for="q7-3">3. こんしゅう のかようび</label>
                 </div>
             </div>
@@ -544,15 +473,15 @@
             <p>８　０８０－１２３４－５６７８</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q8-1" name="q8" aria-label="ぜろはちぜろ いちにさんよん ごろくななはち">
+                    <input type="radio" id="q8-1" name="q8">
                     <label for="q8-1">1. ぜろはちぜろ いちにさんよん ごろくななはち</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q8-2" name="q8" aria-label="れいはちれい いちにさんよん ごろくななはち">
+                    <input type="radio" id="q8-2" name="q8">
                     <label for="q8-2">2. れいはちれい いちにさんよん ごろくななはち</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q8-3" name="q8" aria-label="まるはちまる いちにさんよん ごろくななはち">
+                    <input type="radio" id="q8-3" name="q8">
                     <label for="q8-3">3. まるはちまる いちにさんよん ごろくななはち</label>
                 </div>
             </div>
@@ -568,15 +497,15 @@
             <p>れい）　いち　ー（　　　）ー　さん</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="example2-1" name="example2" aria-label="よん">
+                    <input type="radio" id="example2-1" name="example2">
                     <label for="example2-1">1. よん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example2-2" name="example2" checked aria-label="に">
+                    <input type="radio" id="example2-2" name="example2" checked>
                     <label for="example2-2">2. に</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example2-3" name="example2" aria-label="ご">
+                    <input type="radio" id="example2-3" name="example2">
                     <label for="example2-3">3. ご</label>
                 </div>
             </div>
@@ -586,15 +515,15 @@
             <p>９　げつようび ー（　　　） ー すいようび</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q9-1" name="q9" aria-label="もくようび">
+                    <input type="radio" id="q9-1" name="q9">
                     <label for="q9-1">1. もくようび</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q9-2" name="q9" aria-label="かようび">
+                    <input type="radio" id="q9-2" name="q9">
                     <label for="q9-2">2. かようび</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q9-3" name="q9" aria-label="どようび">
+                    <input type="radio" id="q9-3" name="q9">
                     <label for="q9-3">3. どようび</label>
                 </div>
             </div>
@@ -605,15 +534,15 @@
             <p>１０　ついたち ー（　　　） ー みっか</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q10-1" name="q10" aria-label="ふつか">
+                    <input type="radio" id="q10-1" name="q10">
                     <label for="q10-1">1. ふつか</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q10-2" name="q10" aria-label="いつか">
+                    <input type="radio" id="q10-2" name="q10">
                     <label for="q10-2">2. いつか</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q10-3" name="q10" aria-label="むいか">
+                    <input type="radio" id="q10-3" name="q10">
                     <label for="q10-3">3. むいか</label>
                 </div>
             </div>
@@ -624,15 +553,15 @@
             <p>１１　（　　　）ー きのう ー きょう</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q11-1" name="q11" aria-label="おととい">
+                    <input type="radio" id="q11-1" name="q11">
                     <label for="q11-1">1. おととい</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q11-2" name="q11" aria-label="あした">
+                    <input type="radio" id="q11-2" name="q11">
                     <label for="q11-2">2. あした</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q11-3" name="q11" aria-label="あさって">
+                    <input type="radio" id="q11-3" name="q11">
                     <label for="q11-3">3. あさって</label>
                 </div>
             </div>
@@ -643,15 +572,15 @@
             <p>１２　いち ー に ー （　　　） ー よん</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q12-1" name="q12" aria-label="ろく">
+                    <input type="radio" id="q12-1" name="q12">
                     <label for="q12-1">1. ろく</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q12-2" name="q12" aria-label="さん">
+                    <input type="radio" id="q12-2" name="q12">
                     <label for="q12-2">2. さん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q12-3" name="q12" aria-label="ご">
+                    <input type="radio" id="q12-3" name="q12">
                     <label for="q12-3">3. ご</label>
                 </div>
             </div>
@@ -662,15 +591,15 @@
             <p>１３　せん ー （　　　）ー さんぜん</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q13-1" name="q13" aria-label="にせん">
+                    <input type="radio" id="q13-1" name="q13">
                     <label for="q13-1">1. にせん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q13-2" name="q13" aria-label="よんせん">
+                    <input type="radio" id="q13-2" name="q13">
                     <label for="q13-2">2. よんせん</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q13-3" name="q13" aria-label="ごせん">
+                    <input type="radio" id="q13-3" name="q13">
                     <label for="q13-3">3. ごせん</label>
                 </div>
             </div>
@@ -686,15 +615,15 @@
             <p>れい）わたし（　　　）がくせいです。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="example3-1" name="example3" aria-label="が">
+                    <input type="radio" id="example3-1" name="example3">
                     <label for="example3-1">1. が</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example3-2" name="example3" aria-label="を">
+                    <input type="radio" id="example3-2" name="example3">
                     <label for="example3-2">2. を</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example3-3" name="example3" checked aria-label="は">
+                    <input type="radio" id="example3-3" name="example3" checked>
                     <label for="example3-3">3. は</label>
                 </div>
             </div>
@@ -704,15 +633,15 @@
             <p>１４　これ（　　　）ほんです。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q14-1" name="q14" aria-label="は">
+                    <input type="radio" id="q14-1" name="q14">
                     <label for="q14-1">1. は</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q14-2" name="q14" aria-label="が">
+                    <input type="radio" id="q14-2" name="q14">
                     <label for="q14-2">2. が</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q14-3" name="q14" aria-label="を">
+                    <input type="radio" id="q14-3" name="q14">
                     <label for="q14-3">3. を</label>
                 </div>
             </div>
@@ -723,15 +652,15 @@
             <p>１５　ここ（　　　）ITMセンターです。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q15-1" name="q15" aria-label="は">
+                    <input type="radio" id="q15-1" name="q15">
                     <label for="q15-1">1. は</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q15-2" name="q15" aria-label="が">
+                    <input type="radio" id="q15-2" name="q15">
                     <label for="q15-2">2. が</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q15-3" name="q15" aria-label="を">
+                    <input type="radio" id="q15-3" name="q15">
                     <label for="q15-3">3. を</label>
                 </div>
             </div>
@@ -750,25 +679,25 @@
 
         <div class="question">
             <p>２８　(ほん／わたし／の／これ／は）です。</p>
-            <textarea aria-label="Câu trả lời cho câu 28"></textarea>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-28"></div>
         </div>
 
         <div class="question">
             <p>２９　(せんせい／てちょう／の／ですか／これ／は）。</p>
-            <textarea aria-label="Câu trả lời cho câu 29"></textarea>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-29"></div>
         </div>
 
         <div class="question">
             <p>３０　(じしょ／あれ／じゃありません／は）。</p>
-            <textarea aria-label="Câu trả lời cho câu 30"></textarea>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-30"></div>
         </div>
 
         <div class="question">
             <p>３１　(いま／なんじ／ですか）。</p>
-            <textarea aria-label="Câu trả lời cho câu 31"></textarea>
+            <textarea style="width: 100%; height: 50px;"></textarea>
             <div class="text-answer-feedback" id="feedback-31"></div>
         </div>
     </div>
@@ -777,7 +706,7 @@
         <h2>問題VI．（　　）に　はいる　いちばん　よいものを　えらんでください。（3*5=15）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong (      ).</div>
 
-        <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-bottom: 15px;">
+        <div style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
             <p>A：おはようございます。</p>
             <p>B：おはようございます。</p>
             <p>A：（ ３２ ）はミンさんですか。</p>
@@ -792,15 +721,15 @@
             <p>３２</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q32-1" name="q32" aria-label="あなた">
+                    <input type="radio" id="q32-1" name="q32">
                     <label for="q32-1">1. あなた</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q32-2" name="q32" aria-label="わたし">
+                    <input type="radio" id="q32-2" name="q32">
                     <label for="q32-2">2. わたし</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q32-3" name="q32" aria-label="あのひと">
+                    <input type="radio" id="q32-3" name="q32">
                     <label for="q32-3">3. あのひと</label>
                 </div>
             </div>
@@ -811,15 +740,15 @@
             <p>３３</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q33-1" name="q33" aria-label="は">
+                    <input type="radio" id="q33-1" name="q33">
                     <label for="q33-1">1. は</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q33-2" name="q33" aria-label="が">
+                    <input type="radio" id="q33-2" name="q33">
                     <label for="q33-2">2. が</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q33-3" name="q33" aria-label="を">
+                    <input type="radio" id="q33-3" name="q33">
                     <label for="q33-3">3. を</label>
                 </div>
             </div>
@@ -830,15 +759,15 @@
             <p>３４</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q34-1" name="q34" aria-label="はい">
+                    <input type="radio" id="q34-1" name="q34">
                     <label for="q34-1">1. はい</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q34-2" name="q34" aria-label="どうぞ">
+                    <input type="radio" id="q34-2" name="q34">
                     <label for="q34-2">2. どうぞ</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q34-3" name="q34" aria-label="こちらこそ">
+                    <input type="radio" id="q34-3" name="q34">
                     <label for="q34-3">3. こちらこそ</label>
                 </div>
             </div>
@@ -849,15 +778,15 @@
             <p>３５</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q35-1" name="q35" aria-label="は">
+                    <input type="radio" id="q35-1" name="q35">
                     <label for="q35-1">1. は</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q35-2" name="q35" aria-label="も">
+                    <input type="radio" id="q35-2" name="q35">
                     <label for="q35-2">2. も</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q35-3" name="q35" aria-label="が">
+                    <input type="radio" id="q35-3" name="q35">
                     <label for="q35-3">3. が</label>
                 </div>
             </div>
@@ -868,15 +797,15 @@
             <p>３６</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q36-1" name="q36" aria-label="どなた">
+                    <input type="radio" id="q36-1" name="q36">
                     <label for="q36-1">1. どなた</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q36-2" name="q36" aria-label="なに">
+                    <input type="radio" id="q36-2" name="q36">
                     <label for="q36-2">2. なに</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q36-3" name="q36" aria-label="なん">
+                    <input type="radio" id="q36-3" name="q36">
                     <label for="q36-3">3. なん</label>
                 </div>
             </div>
@@ -892,15 +821,15 @@
             <p>れい）　X: おはようございます</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="example4-1" name="example4" aria-label="こんにちは">
+                    <input type="radio" id="example4-1" name="example4">
                     <label for="example4-1">1. こんにちは</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example4-2" name="example4" checked aria-label="おはようございます">
+                    <input type="radio" id="example4-2" name="example4" checked>
                     <label for="example4-2">2. おはようございます</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="example4-3" name="example4" aria-label="こんばんは">
+                    <input type="radio" id="example4-3" name="example4">
                     <label for="example4-3">3. こんばんは</label>
                 </div>
             </div>
@@ -910,15 +839,15 @@
             <p>３７　X: はじめまして。わたしはタンです。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q37-1" name="q37" aria-label="どうもありがとうございます。">
+                    <input type="radio" id="q37-1" name="q37">
                     <label for="q37-1">1. どうもありがとうございます。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q37-2" name="q37" aria-label="はじめまして。わたしはリンです。">
+                    <input type="radio" id="q37-2" name="q37">
                     <label for="q37-2">2. はじめまして。わたしはリンです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q37-3" name="q37" aria-label="さようなら。">
+                    <input type="radio" id="q37-3" name="q37">
                     <label for="q37-3">3. さようなら。</label>
                 </div>
             </div>
@@ -929,15 +858,15 @@
             <p>３８　X: これは　なんですか。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q38-1" name="q38" aria-label="それは　ほんです。">
+                    <input type="radio" id="q38-1" name="q38">
                     <label for="q38-1">1. それは　ほんです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q38-2" name="q38" aria-label="これはミラーさんです。">
+                    <input type="radio" id="q38-2" name="q38">
                     <label for="q38-2">2. これはミラーさんです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q38-3" name="q38" aria-label="ここはきょうしつです。">
+                    <input type="radio" id="q38-3" name="q38">
                     <label for="q38-3">3. ここはきょうしつです。</label>
                 </div>
             </div>
@@ -948,15 +877,15 @@
             <p>３９　X: いま　なんじですか。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q39-1" name="q39" aria-label="じゅうじはんです。">
+                    <input type="radio" id="q39-1" name="q39">
                     <label for="q39-1">1. じゅうじはんです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q39-2" name="q39" aria-label="じゅうにがつです。">
+                    <input type="radio" id="q39-2" name="q39">
                     <label for="q39-2">2. じゅうにがつです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q39-3" name="q39" aria-label="どようびです。">
+                    <input type="radio" id="q39-3" name="q39">
                     <label for="q39-3">3. どようびです。</label>
                 </div>
             </div>
@@ -967,15 +896,15 @@
             <p>４０　X: あなたの　かばんは　どれですか。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q40-1" name="q40" aria-label="あれは　わたしの　かばんです。">
+                    <input type="radio" id="q40-1" name="q40">
                     <label for="q40-1">1. あれは　わたしの　かばんです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q40-2" name="q40" aria-label="これは　わたしの　かばんです。">
+                    <input type="radio" id="q40-2" name="q40">
                     <label for="q40-2">2. これは　わたしの　かばんです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q40-3" name="q40" aria-label="それは　わたしの　かばんです。">
+                    <input type="radio" id="q40-3" name="q40">
                     <label for="q40-3">3. それは　わたしの　かばんです。</label>
                 </div>
             </div>
@@ -986,15 +915,15 @@
             <p>４１　X: あのかたは　どなたですか。</p>
             <div class="options">
                 <div class="option">
-                    <input type="radio" id="q41-1" name="q41" aria-label="わたしの　せんせいです。">
+                    <input type="radio" id="q41-1" name="q41">
                     <label for="q41-1">1. わたしの　せんせいです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q41-2" name="q41" aria-label="わたしは　がくせいです。">
+                    <input type="radio" id="q41-2" name="q41">
                     <label for="q41-2">2. わたしは　がくせいです。</label>
                 </div>
                 <div class="option">
-                    <input type="radio" id="q41-3" name="q41" aria-label="あのひとは　にほんじんです。">
+                    <input type="radio" id="q41-3" name="q41">
                     <label for="q41-3">3. あのひとは　にほんじんです。</label>
                 </div>
             </div>
@@ -1003,7 +932,7 @@
     </div>
 
     <button id="submit-test" type="button" style="display: none;">テストを提出する (Nộp bài)</button>
-    <div id="submit-message" class="error-message"></div>
+    <div id="message" class="error-message"></div>
 
     <div class="result-section" id="results">
         <h2>採点結果 (Kết quả)</h2>
@@ -1011,7 +940,7 @@
     </div>
 
     <footer>
-        <p>© <script>document.write(new Date().getFullYear())</script> Tài liệu kiểm tra | Thiết kế bởi Thuận</p>
+        <p>© 2025 Tài liệu kiểm tra | Thiết kế bởi Thuận</p>
     </footer>
 
     <script>
@@ -1063,11 +992,14 @@
             7: 15  // 5 questions x 3 points
         };
 
-        // Hàm chuẩn hóa chuỗi: chỉ loại bỏ khoảng trắng đầu/cuối và chuẩn hóa Unicode
+        // Hàm chuẩn hóa chuỗi: loại bỏ khoảng trắng thừa, dấu câu, và chuẩn hóa ký tự Unicode
         function normalizeString(str) {
             return str
-                .normalize('NFKC')
-                .trim();
+                .normalize('NFKC') // Chuẩn hóa Unicode (NFKC để xử lý font tiếng Nhật)
+                .trim() // Loại bỏ khoảng trắng đầu/cuối
+                .replace(/[\s\u3000]+/g, '') // Loại bỏ tất cả khoảng trắng (half-width và full-width)
+                .replace(/[。！？｡!?.、，]/g, '') // Loại bỏ dấu chấm, dấu hỏi, dấu chấm than, dấu phẩy
+                .toLowerCase(); // Chuyển về chữ thường để so sánh
         }
 
         // Hàm hiển thị đáp án đúng/sai cho câu trắc nghiệm
@@ -1078,6 +1010,7 @@
             const options = document.querySelectorAll(`input[name="${questionName}"]`);
             const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
 
+            // Đánh dấu màu cho đáp án
             options.forEach(option => {
                 const label = option.nextElementSibling;
                 if (option.id === answerKey[questionName]) {
@@ -1089,6 +1022,7 @@
                 }
             });
 
+            // Hiển thị phản hồi
             if (selectedOption) {
                 if (selectedOption.id === answerKey[questionName]) {
                     feedbackDiv.textContent = 'Đúng!';
@@ -1111,6 +1045,10 @@
                 const userAnswer = normalizeString(textarea.value);
                 const correctAnswer = normalizeString(textAnswerKey[questionNumber]);
                 const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
+
+                console.log(`Câu ${questionNumber}:`);
+                console.log(`Câu trả lời người dùng (chuẩn hóa): "${userAnswer}"`);
+                console.log(`Đáp án đúng (chuẩn hóa): "${correctAnswer}"`);
 
                 if (userAnswer === correctAnswer) {
                     feedbackDiv.textContent = 'Đúng!';
@@ -1148,11 +1086,24 @@
                 const userAnswer = normalizeString(textarea.value);
                 const correctAnswer = normalizeString(textAnswerKey[questionNumber]);
                 
+                console.log(`Câu ${questionNumber}:`);
+                console.log(`Câu trả lời gốc: "${textarea.value}"`);
+                console.log(`Câu trả lời người dùng (chuẩn hóa): "${userAnswer}"`);
+                console.log(`Đáp án đúng (chuẩn hóa): "${correctAnswer}"`);
+                
                 if (userAnswer === correctAnswer) {
                     score += 4;
+                    console.log(`Câu ${questionNumber}: Đúng (+4 điểm)`);
+                } else {
+                    console.log(`Câu ${questionNumber}: Sai`);
+                }
+                
+                if (!userAnswer) {
+                    console.log(`Câu ${questionNumber}: Không có câu trả lời`);
                 }
             });
             
+            console.log(`Tổng điểm phần V: ${score}`);
             showTextAnswerFeedback();
             return score;
         }
@@ -1181,79 +1132,76 @@
 
         // Function to export all results to Excel
         function exportToExcel(studentInfo, sectionScores, totalScore) {
-            try {
-                const workbook = XLSX.utils.book_new();
-                const totalMaxScore = 76;
+            const workbook = XLSX.utils.book_new();
+            const totalMaxScore = 76;
 
-                const percentage = (totalScore / totalMaxScore) * 100;
+            const percentage = (totalScore / totalMaxScore) * 100;
+            const grade = getGrade(percentage);
+
+            const currentWorksheetData = [
+                ['Tên (名前)', studentInfo.name],
+                ['Lớp (クラス)', studentInfo.class],
+                ['Ngày (日付)', studentInfo.date],
+                ['Thời gian', new Date().toLocaleString('vi-VN')],
+                [],
+                ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', 'Đánh giá xếp loại'],
+                ['問題Ⅰ', sectionPoints[1], sectionScores[1], `${(sectionScores[1] / sectionPoints[1] * 100).toFixed(1)}%`, getGrade((sectionScores[1] / sectionPoints[1] * 100)).symbol],
+                ['問題II', sectionPoints[2], sectionScores[2], `${(sectionScores[2] / sectionPoints[2] * 100).toFixed(1)}%`, getGrade((sectionScores[2] / sectionPoints[2] * 100)).symbol],
+                ['問題III', sectionPoints[3], sectionScores[3], `${(sectionScores[3] / sectionPoints[3] * 100).toFixed(1)}%`, getGrade((sectionScores[3] / sectionPoints[3] * 100)).symbol],
+                ['問題IV', sectionPoints[4], sectionScores[4], `${(sectionScores[4] / sectionPoints[4] * 100).toFixed(1)}%`, getGrade((sectionScores[4] / sectionPoints[4] * 100)).symbol],
+                ['問題V', sectionPoints[5], sectionScores[5], `${(sectionScores[5] / sectionPoints[5] * 100).toFixed(1)}%`, getGrade((sectionScores[5] / sectionPoints[5] * 100)).symbol],
+                ['問題VI', sectionPoints[6], sectionScores[6], `${(sectionScores[6] / sectionPoints[6] * 100).toFixed(1)}%`, getGrade((sectionScores[6] / sectionPoints[6] * 100)).symbol],
+                ['問題VII', sectionPoints[7], sectionScores[7], `${(sectionScores[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
+                ['Tổng (合計)', totalMaxScore, totalScore, `${percentage.toFixed(1)}%`, grade.symbol]
+            ];
+            const currentWorksheet = XLSX.utils.aoa_to_sheet(currentWorksheetData);
+            XLSX.utils.book_append_sheet(workbook, currentWorksheet, 'Kết quả hiện tại');
+
+            const results = JSON.parse(localStorage.getItem('testResults') || '[]');
+            const allResultsData = [
+                ['Thời gian', 'Tên (名前)', 'Lớp (クラス)', 'Ngày (日付)', '問題Ⅰ', '問題II', '問題III', '問題IV', '問題V', '問題VI', '問題VII', 'Điểm đạt được (得点)', 'Điểm tối đa (合計)', 'Tỉ lệ (得点率)', 'Đánh giá xếp loại']
+            ];
+            results.forEach(result => {
+                const percentage = (result.totalScore / totalMaxScore) * 100;
                 const grade = getGrade(percentage);
+                allResultsData.push([
+                    new Date(result.timestamp).toLocaleString('vi-VN'),
+                    result.studentInfo.name,
+                    result.studentInfo.class,
+                    result.studentInfo.date,
+                    result.sectionScores[1],
+                    result.sectionScores[2],
+                    result.sectionScores[3],
+                    result.sectionScores[4],
+                    result.sectionScores[5],
+                    result.sectionScores[6],
+                    result.sectionScores[7],
+                    result.totalScore,
+                    totalMaxScore,
+                    `${percentage.toFixed(1)}%`,
+                    grade.symbol
+                ]);
+            });
+            const allResultsWorksheet = XLSX.utils.aoa_to_sheet(allResultsData);
+            XLSX.utils.book_append_sheet(workbook, allResultsWorksheet, 'Tất cả kết quả');
 
-                const currentWorksheetData = [
-                    ['Tên (名前)', studentInfo.name],
-                    ['Lớp (クラス)', studentInfo.class],
-                    ['Ngày (日付)', studentInfo.date],
-                    ['Thời gian', new Date().toLocaleString('vi-VN')],
-                    [],
-                    ['Phần (問題)', 'Điểm tối đa (配点)', 'Điểm đạt được (得点)', 'Tỉ lệ (得点率)', 'Đánh giá xếp loại'],
-                    ['問題Ⅰ', sectionPoints[1], sectionScores[1], `${(sectionScores[1] / sectionPoints[1] * 100).toFixed(1)}%`, getGrade((sectionScores[1] / sectionPoints[1] * 100)).symbol],
-                    ['問題II', sectionPoints[2], sectionScores[2], `${(sectionScores[2] / sectionPoints[2] * 100).toFixed(1)}%`, getGrade((sectionScores[2] / sectionPoints[2] * 100)).symbol],
-                    ['問題III', sectionPoints[3], sectionScores[3], `${(sectionScores[3] / sectionPoints[3] * 100).toFixed(1)}%`, getGrade((sectionScores[3] / sectionPoints[3] * 100)).symbol],
-                    ['問題IV', sectionPoints[4], sectionScores[4], `${(sectionScores[4] / sectionPoints[4] * 100).toFixed(1)}%`, getGrade((sectionScores[4] / sectionPoints[4] * 100)).symbol],
-                    ['問題V', sectionPoints[5], sectionScores[5], `${(sectionScores[5] / sectionPoints[5] * 100).toFixed(1)}%`, getGrade((sectionScores[5] / sectionPoints[5] * 100)).symbol],
-                    ['問題VI', sectionPoints[6], sectionScores[6], `${(sectionScores[6] / sectionPoints[6] * 100).toFixed(1)}%`, getGrade((sectionScores[6] / sectionPoints[6] * 100)).symbol],
-                    ['問題VII', sectionPoints[7], sectionScores[7], `${(sectionPoints[7] / sectionPoints[7] * 100).toFixed(1)}%`, getGrade((sectionScores[7] / sectionPoints[7] * 100)).symbol],
-                    ['Tổng (合計)', totalMaxScore, totalScore, `${percentage.toFixed(1)}%`, grade.symbol]
-                ];
-                const currentWorksheet = XLSX.utils.aoa_to_sheet(currentWorksheetData);
-                XLSX.utils.book_append_sheet(workbook, currentWorksheet, 'Kết quả hiện tại');
-
-                const results = JSON.parse(localStorage.getItem('testResults') || '[]');
-                const allResultsData = [
-                    ['Thời gian', 'Tên (名前)', 'Lớp (クラス)', 'Ngày (日付)', '問題Ⅰ', '問題II', '問題III', '問題IV', '問題V', '問題VI', '問題VII', 'Điểm đạt được (得点)', 'Điểm tối đa (合計)', 'Tỉ lệ (得点率)', 'Đánh giá xếp loại']
-                ];
-                results.forEach(result => {
-                    const percentage = (result.totalScore / totalMaxScore) * 100;
-                    const grade = getGrade(percentage);
-                    allResultsData.push([
-                        new Date(result.timestamp).toLocaleString('vi-VN'),
-                        result.studentInfo.name,
-                        result.studentInfo.class,
-                        result.studentInfo.date,
-                        result.sectionScores[1],
-                        result.sectionScores[2],
-                        result.sectionScores[3],
-                        result.sectionScores[4],
-                        result.sectionScores[5],
-                        result.sectionScores[6],
-                        result.sectionScores[7],
-                        result.totalScore,
-                        totalMaxScore,
-                        `${percentage.toFixed(1)}%`,
-                        grade.symbol
-                    ]);
-                });
-                const allResultsWorksheet = XLSX.utils.aoa_to_sheet(allResultsData);
-                XLSX.utils.book_append_sheet(workbook, allResultsWorksheet, 'Tất cả kết quả');
-
-                XLSX.writeFile(workbook, `Ket_qua_${studentInfo.name || 'Unknown'}_${studentInfo.date}.xlsx`);
-            } catch (error) {
-                console.error('Excel export error:', error);
-                document.getElementById('submit-message').textContent = 'Lỗi: Không thể xuất file Excel. Vui lòng thử lại.';
-                document.getElementById('submit-message').className = 'error-message';
-            }
+            XLSX.writeFile(workbook, `Ket_qua_${studentInfo.name || 'Unknown'}_${studentInfo.date}.xlsx`);
         }
 
         // Hàm xử lý nộp bài
         function submitTest() {
             try {
-                document.getElementById('submit-message').textContent = '';
+                // Clear previous messages
+                document.getElementById('message').textContent = '';
 
+                // Get student information
                 const studentInfo = {
                     name: document.getElementById('name').value || 'Unknown',
                     class: document.getElementById('class').value || 'Unknown',
                     date: document.getElementById('date').value || new Date().toISOString().split('T')[0]
                 };
 
+                // Calculate scores for each section
                 const section1Score = calculateRadioSectionScore(1, 3, 2);
                 const section2Score = calculateRadioSectionScore(4, 8, 2);
                 const section3Score = calculateRadioSectionScore(9, 13, 2);
@@ -1275,8 +1223,10 @@
                 const totalScore = section1Score + section2Score + section3Score +
                                   section4Score + section5Score + section6Score + section7Score;
 
+                // Save the result to localStorage
                 saveTestResult(studentInfo, sectionScores, totalScore);
 
+                // Show results to student
                 document.getElementById('results').style.display = 'block';
                 document.getElementById('score-display').innerHTML = `
                     <div class="student-details">
@@ -1335,37 +1285,35 @@
                             </tr>
                         </tbody>
                     </table>
-                    <button id="export-excel" style="margin-top: 15px;">Xuất ra Excel</button>
-                    <button id="reset-test" class="reset" style="margin-top: 15px;">Làm lại</button>
+                    <button id="export-excel" style="margin-top: 20px;">Xuất ra Excel</button>
+                    <button id="reset-test" class="reset" style="margin-top: 20px;">Làm lại</button>
                 `;
 
+                // Add event listener for Excel export button
                 document.getElementById('export-excel').addEventListener('click', function() {
                     exportToExcel(studentInfo, sectionScores, totalScore);
                 });
 
+                // Add event listener for reset button
                 document.getElementById('reset-test').addEventListener('click', function() {
-                    localStorage.removeItem('testStartTime');
-                    clearInterval(parseInt(localStorage.getItem('timerInterval')));
-                    localStorage.removeItem('timerInterval');
                     window.location.reload();
                 });
 
+                // Scroll to results
                 document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+
+                // Ẩn bộ đếm thời gian
                 document.getElementById('timer').style.display = 'none';
             } catch (error) {
                 console.error('Submit error:', error);
-                document.getElementById('submit-message').textContent = `エラー: テストの提出に失敗しました。${error.message}`;
-                document.getElementById('submit-message').className = 'error-message';
+                document.getElementById('message').textContent = `エラー: テストの提出に失敗しました。${error.message}`;
+                document.getElementById('message').className = 'error-message';
             }
         }
 
         // Hàm bắt đầu đếm ngược thời gian
         function startTimer(duration) {
-            const startTime = localStorage.getItem('testStartTime') || Date.now();
-            localStorage.setItem('testStartTime', startTime);
-            const endTime = parseInt(startTime) + duration * 60 * 1000;
-            let timeLeft = Math.max(0, Math.floor((endTime - Date.now()) / 1000));
-
+            let timeLeft = duration * 60; // Thời gian tính bằng giây (40 phút = 2400 giây)
             const timerDisplay = document.getElementById('timer');
             timerDisplay.style.display = 'block';
 
@@ -1374,6 +1322,7 @@
                 const seconds = timeLeft % 60;
                 timerDisplay.textContent = `Thời gian còn lại: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
+                // Cảnh báo khi còn 5 phút
                 if (timeLeft <= 300) {
                     timerDisplay.classList.add('warning');
                 }
@@ -1381,17 +1330,13 @@
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
                     timerDisplay.textContent = 'Hết thời gian!';
-                    document.getElementById('submit-message').textContent = 'Hết thời gian! Bài của bạn đã được tự động nộp.';
-                    document.getElementById('submit-message').className = 'error-message';
-                    localStorage.removeItem('testStartTime');
-                    submitTest();
+                    document.getElementById('message').textContent = 'Hết thời gian! Bài của bạn đã được tự động nộp.';
+                    document.getElementById('message').className = 'error-message';
+                    submitTest(); // Tự động nộp bài
                 }
 
                 timeLeft--;
             }, 1000);
-
-            localStorage.setItem('timerInterval', timerInterval);
-            return timerInterval;
         }
 
         // Xử lý sự kiện khi nhấn nút "Bắt đầu làm bài"
@@ -1400,42 +1345,47 @@
             const className = document.getElementById('class').value.trim();
             const date = document.getElementById('date').value;
 
+            // Kiểm tra thông tin đầu vào
             if (!name || !className || !date) {
                 document.getElementById('message').textContent = 'Vui lòng điền đầy đủ thông tin: Tên, Lớp, Ngày.';
                 document.getElementById('message').className = 'error-message';
                 return;
             }
 
+            // Ẩn nút "Bắt đầu làm bài"
             document.getElementById('start-test').style.display = 'none';
             document.getElementById('message').textContent = '';
 
+            // Hiển thị các phần câu hỏi và nút nộp bài
             const questionSections = document.querySelectorAll('.question-section');
             questionSections.forEach(section => {
                 section.style.display = 'block';
             });
             document.getElementById('submit-test').style.display = 'block';
 
+            // Bắt đầu đếm ngược thời gian (40 phút)
             startTimer(40);
         });
 
         // Xử lý sự kiện khi nhấn nút "Nộp bài"
         document.getElementById('submit-test').addEventListener('click', function() {
+            // Kiểm tra textarea trống
             const textAnswers = document.querySelectorAll('textarea');
             let hasEmptyAnswer = false;
-            textAnswers.forEach((textarea) => {
+            textAnswers.forEach((textarea, index) => {
                 if (!textarea.value.trim()) {
                     hasEmptyAnswer = true;
                 }
             });
 
             if (hasEmptyAnswer) {
-                document.getElementById('submit-message').textContent = 'Vui lòng trả lời tất cả các câu trong phần 問題 V.';
-                document.getElementById('submit-message').className = 'error-message';
+                document.getElementById('message').textContent = 'Vui lòng trả lời tất cả các câu trong phần 問題 V.';
+                document.getElementById('message').className = 'error-message';
                 return;
             }
 
             submitTest();
         });
     </script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'933bf037be03677e',t:'MTc0NTIyODYxOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
