@@ -1369,21 +1369,7 @@
 
         // Xử lý sự kiện khi nhấn nút "Nộp bài"
         document.getElementById('submit-test').addEventListener('click', function() {
-            // Kiểm tra textarea trống
-            const textAnswers = document.querySelectorAll('textarea');
-            let hasEmptyAnswer = false;
-            textAnswers.forEach((textarea, index) => {
-                if (!textarea.value.trim()) {
-                    hasEmptyAnswer = true;
-                }
-            });
-
-            if (hasEmptyAnswer) {
-                document.getElementById('message').textContent = 'Vui lòng trả lời tất cả các câu trong phần 問題 V.';
-                document.getElementById('message').className = 'error-message';
-                return;
-            }
-
+            // Không kiểm tra textarea trống nữa, cho phép nộp bài ngay cả khi chưa hoàn thành 問題 V
             submitTest();
         });
     </script>
