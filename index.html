@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -187,6 +188,23 @@
             font-weight: bold;
             background-color: #E5E7EB;
         }
+        .image-placeholder {
+            width: 150px;
+            height: 120px;
+            border: 1px dashed #D1D5DB;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            background-color: #F9FAFB;
+            font-size: 0.9em;
+            overflow: hidden;
+        }
+        .image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
         footer {
             text-align: center;
             margin-top: 40px;
@@ -330,7 +348,10 @@
         <h2>問題Ⅰ．ただしい こたえを えらんでください。（2*3=6）</h2>
         <div class="vietnamese">Hãy chọn câu trả lời đúng</div>
         <div class="example">
-            <p>れい）ほん</p>
+            <p>れい）</p>
+            <div class="image-placeholder">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-YAvLxURrkPteMKMOy56XXwJVG9965lD9Nw&s" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+            </div>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q1-rei-1" name="q1-rei">
@@ -349,6 +370,9 @@
         </div>
         <div class="question">
             <p>１</p>
+            <div class="image-placeholder">
+                <img src="https://illustimage.com/photo/10801.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+            </div>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q1-1" name="q1">
@@ -367,6 +391,9 @@
         </div>
         <div class="question">
             <p>２</p>
+            <div class="image-placeholder">
+                <img src="https://frame-illust.com/fi/wp-content/uploads/2017/05/clock-03.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+            </div>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q2-1" name="q2">
@@ -385,6 +412,9 @@
         </div>
         <div class="question">
             <p>３</p>
+            <div class="image-placeholder">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8xP2FGiCtrON7YRbPZJ6fl5dH3IL4fKipjy1SV36iZ1-V2eOBcF2-fAc-fFfS9hy2l3BIhPPRX4vLbiRmYt0VcPwl-mWzNeWYkj3ZmlkvGEa_GoZqRv8sUJVu5HkojUZcyslTwHV-nV9J/s800/scool_room_kyoushitsu.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+            </div>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q3-1" name="q3">
@@ -704,11 +734,19 @@
         <h2>問題VI．（　　）に はいる いちばん よいものを えらんでください。（3*5=15）</h2>
         <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong ( ).</div>
         <div class="example">
-            <p>Đoạn hội thoại:</p>
-            <p>A：おはようございます。<br>B：おはようございます。</p>
+            <div style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
+            <p>A：おはようございます。</p>
+            <p>B：おはようございます。</p>
+            <p>A：（ ３２ ）はミンさんですか。</p>
+            <p>B：はい、わたし（ ３３ ）ミンです。</p>
+            <p>A：わたしは山田です。どうぞよろしく。</p>
+            <p>B：（ ３４ ）よろしくおねがいします。</p>
+            <p>A：ミンさん（ ３５ ）ベトナムじんですか。</p>
+            <p>B：はい、ベトナムじんです。山田さんは（ ３６ ）ですか。</p>
+            <p>A：にほんじんです。</p>
         </div>
         <div class="question">
-            <p>３２．A：（　　　）はミンさんですか。</p>
+            <p>３２．</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q32-1" name="q32">
@@ -726,7 +764,7 @@
             <div class="answer-feedback" id="feedback-32"></div>
         </div>
         <div class="question">
-            <p>３３．B：はい、わたし（　　　）ミンです。</p>
+            <p>３３．</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q33-1" name="q33">
@@ -744,7 +782,7 @@
             <div class="answer-feedback" id="feedback-33"></div>
         </div>
         <div class="question">
-            <p>３４．B：（　　　）よろしくおねがいします。</p>
+            <p>３４．</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q34-1" name="q34">
@@ -762,7 +800,7 @@
             <div class="answer-feedback" id="feedback-34"></div>
         </div>
         <div class="question">
-            <p>３５．A：ミンさん（　　　）ベトナムじんですか。</p>
+            <p>３５．</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q35-1" name="q35">
@@ -780,7 +818,7 @@
             <div class="answer-feedback" id="feedback-35"></div>
         </div>
         <div class="question">
-            <p>３６．B：はい、ベトナムじんです。山田さんは（　　　）ですか。</p>
+            <p>３６．</p>
             <div class="options">
                 <div class="option">
                     <input type="radio" id="q36-1" name="q36">
