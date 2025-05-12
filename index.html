@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -147,6 +146,8 @@
             background-color: #FFFFFF;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             display: none;
         }
         .error-message {
@@ -167,6 +168,7 @@
         }
         .result-table {
             width: 100%;
+            min-width: 800px;
             border-collapse: collapse;
             margin-top: 15px;
         }
@@ -175,6 +177,7 @@
             padding: 10px;
             text-align: center;
             font-size: 0.9em;
+            white-space: nowrap;
         }
         .result-table th {
             background-color: #4A90E2;
@@ -187,6 +190,16 @@
         .result-table tr.total {
             font-weight: bold;
             background-color: #E5E7EB;
+        }
+        .result-section::-webkit-scrollbar {
+            height: 8px;
+        }
+        .result-section::-webkit-scrollbar-thumb {
+            background-color: #4A90E2;
+            border-radius: 4px;
+        }
+        .result-section::-webkit-scrollbar-track {
+            background-color: #F5F7FA;
         }
         .image-placeholder {
             width: 150px;
@@ -313,6 +326,13 @@
             .password-box {
                 width: 80%;
             }
+            .result-section {
+                padding: 10px;
+            }
+            .result-table th, .result-table td {
+                font-size: 0.8em;
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -371,7 +391,7 @@
         <div class="question">
             <p>１</p>
             <div class="image-placeholder">
-                <img src="https://illustimage.com/photo/10801.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+                <img src="https://illustimage.com/photo/10801.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-1">
             </div>
             <div class="options">
                 <div class="option">
@@ -392,7 +412,7 @@
         <div class="question">
             <p>２</p>
             <div class="image-placeholder">
-                <img src="https://frame-illust.com/fi/wp-content/uploads/2017/05/clock-03.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+                <img src="https://frame-illust.com/fi/wp-content/uploads/2017/05/clock-03.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-2">
             </div>
             <div class="options">
                 <div class="option">
@@ -413,7 +433,7 @@
         <div class="question">
             <p>３</p>
             <div class="image-placeholder">
-                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8xP2FGiCtrON7YRbPZJ6fl5dH3IL4fKipjy1SV36iZ1-V2eOBcF2-fAc-fFfS9hy2l3BIhPPRX4vLbiRmYt0VcPwl-mWzNeWYkj3ZmlkvGEa_GoZqRv8sUJVu5HkojUZcyslTwHV-nV9J/s800/scool_room_kyoushitsu.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-rei">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj8xP2FGiCtrON7YRbPZJ6fl5dH3IL4fKipjy1SV36iZ1-V2eOBcF2-fAc-fFfS9hy2l3BIhPPRX4vLbiRmYt0VcPwl-mWzNeWYkj3ZmlkvGEa_GoZqRv8sUJVu5HkojUZcyslTwHV-nV9J/s800/scool_room_kyoushitsu.png" alt="Hình ảnh ví dụ vấn đề I" id="image-q1-3">
             </div>
             <div class="options">
                 <div class="option">
@@ -735,15 +755,16 @@
         <div class="vietnamese">Hãy chọn đáp án đúng nhất cho vào trong ( ).</div>
         <div class="example">
             <div style="border: 1px solid #ddd; padding: 15px; border-radius: 5px; margin-bottom: 20px;">
-            <p>A：おはようございます。</p>
-            <p>B：おはようございます。</p>
-            <p>A：（ ３２ ）はミンさんですか。</p>
-            <p>B：はい、わたし（ ３３ ）ミンです。</p>
-            <p>A：わたしは山田です。どうぞよろしく。</p>
-            <p>B：（ ３４ ）よろしくおねがいします。</p>
-            <p>A：ミンさん（ ３５ ）ベトナムじんですか。</p>
-            <p>B：はい、ベトナムじんです。山田さんは（ ３６ ）ですか。</p>
-            <p>A：にほんじんです。</p>
+                <p>A：おはようございます。</p>
+                <p>B：おはようございます。</p>
+                <p>A：（ ３２ ）はミンさんですか。</p>
+                <p>B：はい、わたし（ ３３ ）ミンです。</p>
+                <p>A：わたしは山田です。どうぞよろしく。</p>
+                <p>B：（ ３４ ）よろしくおねがいします。</p>
+                <p>A：ミンさん（ ３５ ）ベトナムじんですか。</p>
+                <p>B：はい、ベトナムじんです。山田さんは（ ３６ ）ですか。</p>
+                <p>A：にほんじんです。</p>
+            </div>
         </div>
         <div class="question">
             <p>３２．</p>
@@ -998,10 +1019,10 @@
             4: 3, 5: 1, 6: 1, 7: 1, 8: 1, // 問題 II
             9: 2, 10: 1, 11: 1, 12: 2, 13: 1, // 問題 III
             14: 1, 15: 1, // 問題 IV
-            28: "これはわたしのほんです", // 問題 V
-            29: "これはせんせいのてちょうですか", 
-            30: "あれはじしょじゃありません", 
-            31: "いまなんじですか", 
+            28: "これはわたしのほんです。", // 問題 V
+            29: "これはせんせいのてちょうですか。", 
+            30: "あれはじしょじゃありません。", 
+            31: "いまなんじですか。", 
             32: 1, 33: 1, 34: 3, 35: 1, 36: 2, // 問題 VI
             37: 2, 38: 1, 39: 1, 40: 1, 41: 1 // 問題 VII
         };
@@ -1103,7 +1124,7 @@
             const timerElement = document.getElementById('timer');
 
             timerInterval = setInterval(() => {
-                const now = new Date();
+                const now = new Date(); // Đảm bảo sử dụng 'now' thay vì 'nay'
                 const timeLeft = endTime - now;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
@@ -1122,7 +1143,7 @@
         }
 
         function checkPassword() {
-            const passwordInput = document.getElementById('password-input').value;
+            const passwordenchant = document.getElementById('password-input').value;
             const passwordError = document.getElementById('password-error');
             if (passwordInput === '112') {
                 window.location.href = 'history.html';
@@ -1175,7 +1196,7 @@
             const section7Score = calculateRadioSectionScore(37, 41, 3);
 
             const totalRawScore = section1Score + section2Score + section3Score + section4Score + section5Score + section6Score + section7Score;
-            const totalScore = Math.round((totalRawScore / 76) * 100); // Scale to 100
+            const totalScore = Math.round((totalRawScore / 76) * 100);
             const percentage = totalScore;
             const evaluation = getEvaluation(percentage);
             const rankClass = evaluation === 'A' ? 'rank-a' : evaluation === 'F' ? 'rank-f' : '';
@@ -1230,7 +1251,6 @@
             scoreDisplay.innerHTML = resultTable;
             resultSection.style.display = 'block';
 
-            // Prepare Firestore document
             const firestoreDoc = {
                 startTime: formatTime(startTime),
                 endTime: formatTime(endTime),
@@ -1251,7 +1271,6 @@
                 timestamp: new Date()
             };
 
-            // Validate Firestore document
             let isValid = true;
             for (const [key, value] of Object.entries(firestoreDoc)) {
                 if (value === undefined || value === null) {
@@ -1288,7 +1307,6 @@
                 }
             }
 
-            // Save to localStorage regardless of Firestore result
             const testHistory = JSON.parse(localStorage.getItem('testHistory1-3') || '[]');
             testHistory.push(firestoreDoc);
             localStorage.setItem('testHistory1-3', JSON.stringify(testHistory));
