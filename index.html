@@ -1124,7 +1124,7 @@
             const timerElement = document.getElementById('timer');
 
             timerInterval = setInterval(() => {
-                const now = new Date(); // Đảm bảo sử dụng 'now' thay vì 'nay'
+                const now = new Date();
                 const timeLeft = endTime - now;
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
@@ -1143,7 +1143,7 @@
         }
 
         function checkPassword() {
-            const passwordenchant = document.getElementById('password-input').value;
+            const passwordInput = document.getElementById('password-input').value.trim();
             const passwordError = document.getElementById('password-error');
             if (passwordInput === '112') {
                 window.location.href = 'history.html';
