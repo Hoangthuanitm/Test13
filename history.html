@@ -1,23 +1,20 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Lịch sử kiểm tra - Test 1-3</title>
+    <title>テスト履歴 - て形練習</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-            max-width: 1400px;
+            max-width: 800px;
             margin: 0 auto;
             padding: 20px;
             background-color: #F5F7FA;
             font-size: 16px;
             line-height: 1.6;
             color: #333;
-            -webkit-text-size-adjust: 100%;
-            touch-action: manipulation;
-            overflow: visible;
         }
         .header {
             text-align: center;
@@ -32,83 +29,51 @@
             margin: 0;
             color: #4A90E2;
         }
-        .search-section {
-            margin-bottom: 30px;
-            min-height: 60px;
-            display: flex !important;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            position: relative;
-            z-index: 1;
+        .header h2 {
+            font-size: 1.4em;
+            margin: 10px 0;
+            color: #333;
         }
-        .search-section label {
-            font-weight: 500;
-            color: #4A90E2;
-            margin: 0;
-            white-space: nowrap;
+        .search-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
         }
-        .search-section input {
+        .search-container input {
             width: 100%;
             padding: 8px;
             border: 1px solid #D1D5DB;
             border-radius: 6px;
             font-family: 'Roboto', sans-serif;
             font-size: 16px;
-            transition: border-color 0.2s;
             box-sizing: border-box;
-            touch-action: manipulation;
-            flex: 1;
-            min-width: 200px;
         }
-        .search-section input:focus {
+        .search-container input:focus {
             border-color: #4A90E2;
             outline: none;
         }
-        .table-container {
-            overflow-x: auto;
-            margin-top: 20px;
-        }
-        .history-table {
+        table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 15px;
+            background-color: #FFFFFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
         }
-        .history-table th, .history-table td {
-            border: 1px solid #E0E4EA;
-            padding: 8px;
-            text-align: center;
-            font-size: 0.9em;
-            min-width: 80px;
-            max-width: 200px;
-            overflow-wrap: break-word;
-            white-space: normal;
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #E0E4EA;
         }
-        .history-table th {
+        th {
             background-color: #4A90E2;
             color: #FFFFFF;
             font-weight: 500;
         }
-        .history-table tr:nth-child(even) {
-            background-color: #F9FAFB;
-        }
-        .history-table .delete-btn {
-            background-color: #EF4444;
-            color: #FFFFFF;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: background-color 0.2s;
-        }
-        .history-table .delete-btn:hover {
-            background-color: #DC2626;
-        }
-        .error-message {
-            color: #EF4444;
-            margin-top: 15px;
-            font-size: 0.95em;
+        tr:last-child td {
+            border-bottom: none;
         }
         .rank-a {
             color: #4A90E2;
@@ -118,79 +83,72 @@
             color: #EF4444;
             font-weight: 500;
         }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px 0;
-            border-top: 1px solid #E0E4EA;
-            color: #6B7280;
+        button {
+            background-color: #4A90E2;
+            color: #FFFFFF;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
             font-size: 0.9em;
             font-family: 'Roboto', sans-serif;
+            transition: background-color 0.2s, transform 0.1s;
         }
-        @media (max-width: 600px) {
-            .history-table {
-                font-size: 0.8em;
-            }
-            .history-table th, .history-table td {
-                padding: 6px;
-                font-size: 0.8em;
-                min-width: 60px;
-                max-width: 150px;
-            }
-            .search-section {
-                padding: 10px;
-                display: flex !important;
-            }
-            .search-section label {
-                font-size: 14px;
-            }
-            .search-section input {
-                font-size: 14px;
-                min-width: 150px;
-            }
+        button:hover {
+            background-color: #357ABD;
+            transform: translateY(-1px);
+        }
+        button.delete-btn {
+            background-color: #EF4444;
+        }
+        button.delete-btn:hover {
+            background-color: #DC2626;
+        }
+        .error-message {
+            color: #EF4444;
+            margin-top: 15px;
+            font-size: 0.95em;
+            text-align: center;
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>Lịch sử kiểm tra - Test 1-3</h1>
+        <h1>テスト履歴</h1>
+        <h2>て形練習</h2>
     </div>
 
-    <div class="search-section">
-        <label for="search">Tìm kiếm:</label>
-        <input type="text" id="search" placeholder="Nhập tên, lớp hoặc ngày (YYYY-MM-DD)">
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Tên, lớp, hoặc ngày">
     </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Thời gian bắt đầu</th>
+                <th>Thời gian kết thúc</th>
+                <th>Ngày</th>
+                <th>Tên</th>
+                <th>Lớp</th>
+                <th>Điểm số</th>
+                <th>Tỷ lệ</th>
+                <th>Xếp loại</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody id="history-table-body"></tbody>
+    </table>
+
     <div id="message" class="error-message"></div>
 
-    <div class="table-container">
-        <table class="history-table" id="history-table">
-            <thead>
-                <tr>
-                    <th>Thời gian bắt đầu</th>
-                    <th>Thời gian kết thúc</th>
-                    <th>Ngày</th>
-                    <th>Tên</th>
-                    <th>Lớp</th>
-                    <th>問題 I</th>
-                    <th>問題 II</th>
-                    <th>問題 III</th>
-                    <th>問題 IV</th>
-                    <th>問題 V</th>
-                    <th>問題 VI</th>
-                    <th>問題 VII</th>
-                    <th>Tổng</th>
-                    <th>Tỷ lệ</th>
-                    <th>Xếp loại</th>
-                    <th>Thao tác</th>
-                </tr>
-            </thead>
-            <tbody id="history-table-body"></tbody>
-        </table>
+    <div class="button-container">
+        <button onclick="window.location.href='index.html'">Quay lại</button>
     </div>
-
-    <footer>
-        <p>© 2025 Tài liệu kiểm tra | Thiết kế bởi Thuận</p>
-    </footer>
 
     <script type="module">
         // Import Firebase SDK
@@ -224,16 +182,6 @@
         }
 
         // Define Firestore functions
-        const sectionPoints = {
-            1: 6,
-            2: 10,
-            3: 10,
-            4: 4,
-            5: 16,
-            6: 15,
-            7: 15
-        };
-
         function normalizeString(str) {
             return str
                 .normalize('NFKC')
@@ -255,7 +203,7 @@
             const historyTableBody = document.getElementById('history-table-body');
             const messageDiv = document.getElementById('message');
             let testHistory = [];
-            const collectionName = 'testHistorytuvungnguphap1-3'; // Updated to match index.html
+            const collectionName = 'testHistorytekeirenshuu';
 
             if (!db) {
                 messageDiv.textContent = 'Không thể kết nối với cơ sở dữ liệu. Vui lòng kiểm tra cấu hình Firebase.';
@@ -263,7 +211,6 @@
             }
 
             try {
-                // Fetch data from testHistorytuvungnguphap1-3
                 const snapshot = await getDocs(collection(db, collectionName));
                 testHistory = snapshot.docs.map(doc => ({
                     id: doc.id,
@@ -271,7 +218,7 @@
                     ...doc.data()
                 }));
 
-                // Filter valid data before sorting
+                // Filter valid data
                 testHistory = testHistory.filter(entry => {
                     if (!entry.timestamp || typeof entry.timestamp.toDate !== 'function') {
                         console.warn(`Dữ liệu không hợp lệ trong collection ${entry.collection}, id ${entry.id}: Thiếu hoặc sai định dạng timestamp`);
@@ -288,7 +235,7 @@
                     const normalizedSearch = normalizeString(searchTerm);
                     testHistory = testHistory.filter(entry =>
                         normalizeString(entry.name || '').includes(normalizedSearch) ||
-                        normalizeString(entry.className || '').includes(normalizedSearch) ||
+                        normalizeString(entry.class || '').includes(normalizedSearch) ||
                         normalizeString(entry.date || '').includes(normalizedSearch)
                     );
                 }
@@ -298,21 +245,17 @@
                 testHistory.forEach(entry => {
                     const evaluation = getEvaluation(entry.percentage || 0);
                     const rankClass = evaluation === 'A' ? 'rank-a' : evaluation === 'F' ? 'rank-f' : '';
+                    const startTime = entry.startTime ? entry.startTime.toDate().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }) : 'N/A';
+                    const endTime = entry.endTime ? entry.endTime.toDate().toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh' }) : 'N/A';
+                    const totalQuestions = entry.totalQuestions || 67; // Fallback for legacy data
                     const row = `
                         <tr>
-                            <td>${entry.startTime || 'N/A'}</td>
-                            <td>${entry.endTime || 'N/A'}</td>
+                            <td>${startTime}</td>
+                            <td>${endTime}</td>
                             <td>${entry.date || 'N/A'}</td>
                             <td>${entry.name || 'N/A'}</td>
-                            <td>${entry.className || 'N/A'}</td>
-                            <td>${entry.section1 || 0}/${sectionPoints[1]}</td>
-                            <td>${entry.section2 || 0}/${sectionPoints[2]}</td>
-                            <td>${entry.section3 || 0}/${sectionPoints[3]}</td>
-                            <td>${entry.section4 || 0}/${sectionPoints[4]}</td>
-                            <td>${entry.section5 || 0}/${sectionPoints[5]}</td>
-                            <td>${entry.section6 || 0}/${sectionPoints[6]}</td>
-                            <td>${entry.section7 || 0}/${sectionPoints[7]}</td>
-                            <td>${entry.totalScore || 0}/100</td>
+                            <td>${entry.class || 'N/A'}</td>
+                            <td>${entry.score || 0}/${totalQuestions}</td>
                             <td>${Math.round(entry.percentage || 0)}%</td>
                             <td class="${rankClass}">${evaluation}</td>
                             <td><button class="delete-btn" data-doc-id="${entry.id}" data-collection="${entry.collection}">Xóa</button></td>
@@ -322,7 +265,7 @@
                 });
 
                 if (testHistory.length === 0) {
-                    historyTableBody.innerHTML = '<tr><td colspan="16">Không có dữ liệu lịch sử hoặc không thể truy xuất dữ liệu.</td></tr>';
+                    historyTableBody.innerHTML = '<tr><td colspan="9">Không có dữ liệu lịch sử hoặc không thể truy xuất dữ liệu.</td></tr>';
                 }
 
                 messageDiv.textContent = '';
